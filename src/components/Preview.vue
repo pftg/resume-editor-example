@@ -13,15 +13,12 @@
           {{ resume.firstName }}
           {{ resume.lastName }}
         </div>
-        <a
-          href="#"
+        <span
           class="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline"
         >
           {{ resume.subtitle }} |
-          <a :href="resume_email_uri" v-if="resume.email.length > 0">{{
-            resume.email
-          }}</a>
-        </a>
+          <a :href="resume_email_uri" v-if="resume.email">{{ resume.email }}</a>
+        </span>
         <p class="mt-2 text-gray-600">
           Getting a new business off the ground is a lot of hard work. Here are
           five ideas you can use to find your first customers.
