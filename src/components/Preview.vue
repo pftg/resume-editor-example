@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-8">
+  <div id="preview" class="mb-8" data-cy-preview-block>
     <div class="md:flex">
       <div class="md:flex-shrink-0">
         <img

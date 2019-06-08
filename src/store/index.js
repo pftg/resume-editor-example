@@ -36,6 +36,7 @@ export default new Vuex.Store({
 
     updateResume({ state, commit }, resume) {
       const savedResume = state.resume;
+      commit("updateResume", resume);
 
       api.updateResume(
         resume,

@@ -173,7 +173,7 @@
                   >
                     <router-view />
                   </div>
-                  <div class="hidden xl:text-sm xl:block xl:w-3/4 xl:px-6">
+                  <div class="hidden xl:text-sm md:block xl:w-3/4 xl:px-6">
                     <Preview />
                   </div>
                 </div>
