@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 
 import Subtitle from "./views/Subtitle.vue";
 import Email from "./views/Email.vue";
+import Experience from "./views/Experience";
 
 Vue.use(Router);
 
@@ -31,6 +32,11 @@ export default new Router({
       path: "/email",
       name: "email",
       component: Email
+    },
+    {
+      path: "/experience",
+      name: "experience",
+      component: Experience
     }
   ]
 });
