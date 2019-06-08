@@ -38,9 +38,10 @@ export default new Vuex.Store({
       const savedResume = state.resume;
       commit("updateResume", resume);
 
-      api.updateResume(resume)
+      api
+        .updateResume(resume)
         .then(() => console.log("success in resume update"))
-        .catch((errorMessage) => {
+        .catch(errorMessage => {
           console.error(errorMessage);
           console.error("Reverting resume to previous version");
           commit("updateResume", savedResume);

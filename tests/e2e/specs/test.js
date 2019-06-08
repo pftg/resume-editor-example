@@ -2,7 +2,7 @@
 
 describe("Loading layout", () => {
   it("Success scenario to manage resume", () => {
-    cy.visit("/")
+    cy.visit("/");
 
     cy.contains("Start").click();
 

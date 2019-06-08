@@ -3,7 +3,9 @@ const REMOTE_STORAGE_KEY = "remote-key-resume-editor-vuejs-example";
 export default {
   getResume(success) {
     setTimeout(() => {
-      const response = JSON.parse(window.localStorage.getItem(REMOTE_STORAGE_KEY) || "{}");
+      const response = JSON.parse(
+        window.localStorage.getItem(REMOTE_STORAGE_KEY) || "{}"
+      );
       success(response);
     }, 100);
   },

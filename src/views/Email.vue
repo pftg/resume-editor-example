@@ -15,8 +15,8 @@
           id="email"
           type="email"
           placeholder="paul.keen@jetthoughts.com"
-          :value="email"
-          @change="email = $event.target.value"
+          :value="resume.email"
+          @change="updateResume({ email: $event.target.value })"
         />
       </div>
     </div>
@@ -31,17 +31,11 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+
 export default {
   name: "Email",
-  computed: {
-    email: {
-      get() {
-        return this.$store.state.resume.email;
-      },
-      set(value) {
-        this.$store.commit("updateResume", { email: value });
-      }
-    }
-  }
+  methods: mapActions(["updateResume"]),
+  computed: mapState({ resume: state => state.resume })
 };
 </script>
