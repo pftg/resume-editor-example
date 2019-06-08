@@ -1,9 +1,13 @@
 import { createLocalVue, shallowMount } from "@vue/test-utils";
 import Vuex from "vuex";
+// NOTE: We do not need it to use for our tests. But because of warning we have to enable it
+import router from "@/router";
+
 import Name from "@/views/Name.vue";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
+localVue.use(router);
 
 describe("Name.vue", () => {
   let mutations;

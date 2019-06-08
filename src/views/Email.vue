@@ -13,12 +13,12 @@
       </div>
     </div>
 
-    <button
+    <router-link
       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      @click="$router.push('/subtitle')"
+      to="/subtitle"
     >
       Prev
-    </button>
+    </router-link>
   </div>
 </template>
 

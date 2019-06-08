@@ -33,14 +33,13 @@
           @change="lastName = $event.target.value"
         />
       </div>
-
-      <button
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        @click="$router.push('/subtitle')"
-      >
-        Next
-      </button>
     </div>
+    <router-link
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      to="/subtitle"
+    >
+      Next
+    </router-link>
   </div>
 </template>
 

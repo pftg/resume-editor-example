@@ -13,19 +13,19 @@
       </div>
     </div>
 
-    <button
+    <router-link
       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      @click="$router.push('/name')"
+      to="/name"
     >
       Prev
-    </button>
+    </router-link>
 
-    <button
+    <router-link
       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      @click="$router.push('/email')"
+      to="/email"
     >
       Next
-    </button>
+    </router-link>
   </div>
 </template>
 
