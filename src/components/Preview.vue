@@ -16,8 +16,11 @@
         <span
           class="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline"
         >
-          {{ resume.subtitle }} |
-          <a :href="resume_email_uri" v-if="resume.email">{{ resume.email }}</a>
+          {{ resume.subtitle }}
+
+          <span v-if="resume.email">
+            | <a :href="resume_email_uri">{{ resume.email }}</a>
+          </span>
         </span>
         <p class="mt-2 text-gray-600">
           Getting a new business off the ground is a lot of hard work. Here are
@@ -36,7 +39,7 @@ export default {
   computed: {
     ...mapState(["resume"]),
     resume_email_uri() {
-      return `mail://${this.$store.state.resume.email}`;
+      return `mailto://${this.$store.state.resume.email}`;
     }
   }
 };
