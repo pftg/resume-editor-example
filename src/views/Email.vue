@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 mb-6" role="alert">
+      <p class="font-bold">Email</p>
+      <p class="text-sm">professional email</p>
+    </div>
+
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <div class="mb-4">
         <input
