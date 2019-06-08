@@ -38,15 +38,13 @@ export default new Vuex.Store({
       const savedResume = state.resume;
       commit("updateResume", resume);
 
-      api.updateResume(
-        resume,
-        () => console.log("success in resume update"),
-        errorMessage => {
+      api.updateResume(resume)
+        .then(() => console.log("success in resume update"))
+        .catch((errorMessage) => {
           console.error(errorMessage);
           console.error("Reverting resume to previous version");
           commit("updateResume", savedResume);
-        }
-      );
+        });
     }
   }
 });
