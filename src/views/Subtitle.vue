@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 mb-6" role="alert">
+    <div
+      class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 mb-6"
+      role="alert"
+    >
       <p class="font-bold">Subtitle</p>
       <p class="text-sm">Two words what you want to do</p>
     </div>
@@ -9,11 +12,11 @@
       <div class="mb-4">
         <input
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="username"
+          id="subtitle"
           type="text"
           placeholder="Founder"
-          :value="subtitle"
-          @change="subtitle = $event.target.value"
+          :value="resume.subtitle"
+          @change="updateResume({ subtitle: $event.target.value })"
         />
       </div>
     </div>
@@ -35,17 +38,13 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+
 export default {
   name: "Subtitle",
-  computed: {
-    subtitle: {
-      get() {
-        return this.$store.state.resume.subtitle;
-      },
-      set(value) {
-        this.$store.commit("updateResume", { subtitle: value });
-      }
-    }
-  }
+  methods: mapActions(["updateResume"]),
+  computed: mapState({
+    resume: state => state.resume
+  })
 };
 </script>

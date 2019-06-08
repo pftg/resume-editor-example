@@ -1,11 +1,13 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
+import api from "@/api/hireclub-client";
+
 Vue.use(Vuex);
 
 export const mutations = {
   updateResume(state, attrs) {
-    Object.assign(state.resume, attrs);
+    state.resume = { ...state.resume, ...attrs };
   }
 };
 
@@ -25,5 +27,25 @@ export default new Vuex.Store({
   },
   plugins,
   mutations,
-  actions: {}
+  actions: {
+    fetchResume({ commit }) {
+      api.getResume(resume => {
+        commit("updateResume", resume);
+      });
+    },
+
+    updateResume({ state, commit }, resume) {
+      const savedResume = state.resume;
+
+      api.updateResume(
+        resume,
+        () => console.log("success in resume update"),
+        errorMessage => {
+          console.error(errorMessage);
+          console.error("Reverting resume to previous version");
+          commit("updateResume", savedResume);
+        }
+      );
+    }
+  }
 });

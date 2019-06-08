@@ -192,6 +192,10 @@ import Preview from "@/components/Preview.vue";
 export default {
   components: {
     Preview
+  },
+
+  created() {
+    this.$store.dispatch("fetchResume");
   }
 };
 </script>
