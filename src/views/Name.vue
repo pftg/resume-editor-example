@@ -21,8 +21,8 @@
           id="first-name"
           type="text"
           placeholder="Paul"
-          :value="firstName"
-          @change="firstName = $event.target.value"
+          :value="resume.firstName"
+          @change="updateResume({ firstName: $event.target.value })"
         />
       </div>
       <div class="mb-4">
@@ -37,8 +37,8 @@
           id="last-name"
           type="text"
           placeholder="Keen"
-          :value="lastName"
-          @change="lastName = $event.target.value"
+          :value="resume.lastName"
+          @change="updateResume({ lastName: $event.target.value })"
         />
       </div>
     </div>
@@ -52,25 +52,11 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
+
 export default {
   name: "Name",
-  computed: {
-    firstName: {
-      get() {
-        return this.$store.state.resume.firstName;
-      },
-      set(value) {
-        this.$store.commit("updateResume", { firstName: value });
-      }
-    },
-    lastName: {
-      get() {
-        return this.$store.state.resume.lastName;
-      },
-      set(value) {
-        this.$store.commit("updateResume", { lastName: value });
-      }
-    }
-  }
+  methods: mapActions(["updateResume"]),
+  computed: mapState({ resume: state => state.resume })
 };
 </script>

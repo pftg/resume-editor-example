@@ -10,11 +10,11 @@ localVue.use(Vuex);
 localVue.use(router);
 
 describe("Name.vue", () => {
-  let mutations;
+  let actions;
   let store;
 
   beforeEach(() => {
-    mutations = {
+    actions = {
       updateResume: jest.fn()
     };
 
@@ -25,7 +25,7 @@ describe("Name.vue", () => {
           lastName: "LastName"
         }
       },
-      mutations
+      actions
     });
   });
 
@@ -43,16 +43,6 @@ describe("Name.vue", () => {
     $firstName.element.value = "New First Name";
     $firstName.trigger("change");
 
-    expect(mutations.updateResume).toHaveBeenCalled();
-  });
-
-  it("updates names on next button click", () => {
-    const wrapper = shallowMount(Name, { store, localVue });
-
-    const $firstName = wrapper.find("input#first-name");
-    $firstName.element.value = "input";
-    $firstName.trigger("change");
-
-    expect(mutations.updateResume).toHaveBeenCalled();
+    expect(actions.updateResume).toHaveBeenCalled();
   });
 });

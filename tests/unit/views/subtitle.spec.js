@@ -10,14 +10,11 @@ localVue.use(Vuex);
 localVue.use(router);
 
 describe("Subtitle.vue", () => {
-  let mutations, actions;
+  let actions;
   let store;
 
   beforeEach(() => {
     actions = {
-      updateResume: jest.fn()
-    };
-    mutations = {
       updateResume: jest.fn()
     };
 
@@ -27,8 +24,7 @@ describe("Subtitle.vue", () => {
           subtitle: "Subtitle"
         }
       },
-      actions,
-      mutations
+      actions
     });
   });
 
