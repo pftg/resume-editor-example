@@ -1,7 +1,10 @@
 <template>
   <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
     <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="first-name">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="first-name"
+      >
         First Name
       </label>
       <input
@@ -9,6 +12,8 @@
         id="first-name"
         type="text"
         placeholder="Paul"
+        :value="firstName"
+        @change="firstName = $event.target.value"
       />
     </div>
     <div class="mb-4">
@@ -20,7 +25,33 @@
         id="last-name"
         type="text"
         placeholder="Keen"
+        :value="lastName"
+        @change="lastName = $event.target.value"
       />
     </div>
   </form>
 </template>
+
+<script>
+export default {
+  name: "Name",
+  computed: {
+    firstName: {
+      get() {
+        return this.$store.state.resume.firstName;
+      },
+      set(value) {
+        this.$store.commit("updateResume", { firstName: value });
+      }
+    },
+    lastName: {
+      get() {
+        return this.$store.state.resume.lastName;
+      },
+      set(value) {
+        this.$store.commit("updateResume", { lastName: value });
+      }
+    }
+  }
+};
+</script>

@@ -6,7 +6,25 @@
         id="username"
         type="text"
         placeholder="Founder"
+        :value="subtitle"
+        @change="subtitle = $event.target.value"
       />
     </div>
   </form>
 </template>
+
+<script>
+export default {
+  name: "Subtitle",
+  computed: {
+    subtitle: {
+      get() {
+        return this.$store.state.resume.subtitle;
+      },
+      set(value) {
+        this.$store.commit("updateResume", { subtitle: value });
+      }
+    }
+  }
+};
+</script>

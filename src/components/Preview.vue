@@ -1,33 +1,38 @@
 <template>
   <div class="mb-8">
-    <div class="rounded overflow-hidden shadow-lg">
-      <img
-        class="w-full"
-        src="https://picsum.photos/200/300"
-        alt="Sunset in the mountains"
-      />
-      <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-        <p class="text-gray-700 text-base">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-          nihil.
-        </p>
+    <div class="md:flex">
+      <div class="md:flex-shrink-0">
+        <img
+          class="rounded-lg md:w-56"
+          src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=448&q=80"
+          alt="Woman paying for a purchase"
+        />
       </div>
-      <div class="px-6 py-4">
-        <span
-          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-          >#photography</span
+      <div class="mt-4 md:mt-0 md:ml-6">
+        <div class="uppercase tracking-wide text-sm text-indigo-600 font-bold">
+          {{ resume.firstName }}
+          {{ resume.lastName }}
+        </div>
+        <a
+          href="#"
+          class="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline"
         >
-        <span
-          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-          >#travel</span
-        >
-        <span
-          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700"
-          >#winter</span
-        >
+          {{ resume.subtitle }}
+        </a>
+        <p class="mt-2 text-gray-600">
+          Getting a new business off the ground is a lot of hard work. Here are
+          five ideas you can use to find your first customers.
+        </p>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import { mapState } from "vuex";
+
+export default {
+  name: "Preview",
+  computed: mapState(["resume"])
+};
+</script>
