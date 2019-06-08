@@ -43,8 +43,6 @@ import { mapActions, mapState } from "vuex";
 export default {
   name: "Subtitle",
   methods: mapActions(["updateResume"]),
-  computed: mapState({
-    resume: state => state.resume
-  })
+  computed: mapState({ resume: state => state.resume })
 };
 </script>
