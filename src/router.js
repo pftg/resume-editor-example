@@ -1,7 +1,9 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
+
 import Subtitle from "./views/Subtitle.vue";
+import Email from "./views/Email.vue";
 
 Vue.use(Router);
 
@@ -24,6 +26,11 @@ export default new Router({
       path: "/subtitle",
       name: "subtitle",
       component: Subtitle
+    },
+    {
+      path: "/email",
+      name: "email",
+      component: Email
     }
   ]
 });

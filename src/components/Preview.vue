@@ -17,7 +17,10 @@
           href="#"
           class="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline"
         >
-          {{ resume.subtitle }}
+          {{ resume.subtitle }} |
+          <a :href="resume_email_uri" v-if="resume.email.length > 0">{{
+            resume.email
+          }}</a>
         </a>
         <p class="mt-2 text-gray-600">
           Getting a new business off the ground is a lot of hard work. Here are
@@ -33,6 +36,11 @@ import { mapState } from "vuex";
 
 export default {
   name: "Preview",
-  computed: mapState(["resume"])
+  computed: {
+    ...mapState(["resume"]),
+    resume_email_uri() {
+      return `mail://${this.$store.state.resume.email}`;
+    }
+  }
 };
 </script>

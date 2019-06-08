@@ -8,7 +8,8 @@ export default new Vuex.Store({
     resume: {
       firstName: "",
       lastName: "",
-      subtitle: ""
+      subtitle: "",
+      email: ""
     }
   },
   mutations: {
