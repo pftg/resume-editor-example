@@ -1,16 +1,26 @@
 <template>
-  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-    <div class="mb-4">
-      <input
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="username"
-        type="text"
-        placeholder="Founder"
-        :value="subtitle"
-        @change="subtitle = $event.target.value"
-      />
+  <div>
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div class="mb-4">
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="username"
+          type="text"
+          placeholder="Founder"
+          :value="subtitle"
+          @change="subtitle = $event.target.value"
+        />
+      </div>
     </div>
-  </form>
+
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="$router.push('/name')">
+      Prev
+    </button>
+
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="$router.push('/email')">
+      Next
+    </button>
+  </div>
 </template>
 
 <script>
