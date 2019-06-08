@@ -206,6 +206,6 @@ export default {
 }
 
 .menu-link.router-link-exact-active {
-  @apply text-teal-600;
+  @apply text-blue-900;
 }
 </style>

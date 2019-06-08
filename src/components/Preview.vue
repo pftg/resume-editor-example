@@ -14,12 +14,14 @@
           {{ resume.lastName }}
         </div>
         <span
-          class="block mt-1 text-lg leading-tight font-semibold text-gray-900 hover:underline"
+          class="block mt-1 text-lg leading-tight font-semibold text-gray-900"
         >
           {{ resume.subtitle }}
-
+          <span v-if="resume.email && resume.subtitle"> | </span>
           <span v-if="resume.email">
-            | <a :href="resume_email_uri">{{ resume.email }}</a>
+            <a class="hover:underline" :href="resume_email_uri">{{
+              resume.email
+            }}</a>
           </span>
         </span>
         <p class="mt-2 text-gray-600">
