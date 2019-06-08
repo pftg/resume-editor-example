@@ -3,6 +3,12 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+export const mutations = {
+  updateResume(state, attrs) {
+    Object.assign(state.resume, attrs);
+  }
+};
+
 export default new Vuex.Store({
   state: {
     resume: {
@@ -12,10 +18,6 @@ export default new Vuex.Store({
       email: ""
     }
   },
-  mutations: {
-    updateResume(state, attrs) {
-      Object.assign(state.resume, attrs);
-    }
-  },
+  mutations,
   actions: {}
 });
