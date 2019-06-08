@@ -82,10 +82,7 @@
               class="px-6 pt-6 overflow-y-auto text-base lg:text-sm lg:py-12 lg:pl-6 lg:pr-8 sticky?lg:h-(screen-16)"
             >
               <div class="mb-10">
-                <router-link
-                  to="/"
-                  class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-blue-600"
-                >
+                <router-link to="/" class="flex items-center  menu-link">
                   <svg
                     class="h-6 w-6"
                     xmlns="http://www.w3.org/2000/svg"
@@ -103,10 +100,7 @@
                   <span class="ml-3">Home</span>
                 </router-link>
 
-                <router-link
-                  to="/name"
-                  class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-blue-600"
-                >
+                <router-link to="/name" class="flex items-center  menu-link">
                   <svg
                     class="h-6 w-6"
                     xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +120,7 @@
 
                 <router-link
                   to="/subtitle"
-                  class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-blue-600"
+                  class="flex items-center  menu-link"
                 >
                   <svg
                     class="h-6 w-6"
@@ -144,10 +138,7 @@
                   </svg>
                   <span class="ml-3">Subtitle</span>
                 </router-link>
-                <router-link
-                  to="/email"
-                  class="flex items-center px-2 -mx-2 py-1 hover:text-gray-900 font-medium text-blue-600"
-                >
+                <router-link to="/email" class="flex items-center menu-link">
                   <svg
                     class="h-6 w-6"
                     xmlns="http://www.w3.org/2000/svg"
@@ -205,4 +196,16 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.menu-link {
+  @apply px-2 -mx-2 py-1 font-medium text-blue-600;
+}
+
+.menu-link:hover {
+  @apply text-gray-900;
+}
+
+.menu-link.router-link-exact-active {
+  @apply text-teal-600;
+}
+</style>
