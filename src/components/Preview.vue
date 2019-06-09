@@ -31,10 +31,14 @@
 
         <div v-for="(job, index) in resume.jobs" :key="index">
           <div class="mt-2">
-            <div class="title">{{ job.title }} | {{ job.company }}</div>
-            <div class="range">{{ job.startDate }} - {{ job.endDate }}</div>
-            <div class="highlights">
-              <ul>
+            <div class="uppercase tracking-wide text-sm font-bold">
+              {{ job.title }} | {{ job.company }}
+            </div>
+            <div class="block mt-1 leading-tight font-semibold text-gray-900">
+              {{ job.startDate }} - {{ job.endDate }}
+            </div>
+            <div class="mt-2 text-gray-600">
+              <ul class="list-disc">
                 <li v-for="(highlight, index) in job.highlights" :key="index">
                   {{ highlight.text }}
                 </li>
