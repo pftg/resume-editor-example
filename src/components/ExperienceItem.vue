@@ -39,13 +39,14 @@
 
     <div :key="index" class="mb-4" v-for="(highlight, index) in job.highlights">
       <Highlight :highlight="highlight" />
+      <button @click="removeHighlight(highlight)">Delete</button>
     </div>
 
     <div class="mb-4">
       <input
         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         type="text"
-        placeholder="Highlight"
+        placeholder="New Highlight"
         @change="doneAdd"
       />
     </div>
@@ -57,11 +58,10 @@ import { mapActions } from "vuex";
 import Highlight from "@/components/Highlight";
 
 export default {
-  name: "ExperienceItem",
   props: ["job"],
   components: { Highlight },
   methods: {
-    ...mapActions(["updateResume", "addHighlight"]),
+    ...mapActions(["updateResume", "addHighlight", "removeHighlight"]),
     doneAdd(event) {
       this.addHighlight(event.target.value);
       event.target.value = "";

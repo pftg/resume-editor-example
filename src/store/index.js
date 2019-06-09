@@ -15,6 +15,9 @@ export const mutations = {
   },
   addHighlight(state, highlight) {
     state.resume.job.highlights.push(highlight);
+  },
+  removeHighlight(state, highlight) {
+    state.resume.job.highlights.splice(state.resume.job.highlights.indexOf(highlight), 1);
   }
 };
 
@@ -76,6 +79,10 @@ export default new Vuex.Store({
 
     addHighlight({ commit }, text) {
       commit("addHighlight", { text });
+    },
+
+    removeHighlight({ commit }, highlight) {
+      commit("removeHighlight", highlight);
     }
   }
 });

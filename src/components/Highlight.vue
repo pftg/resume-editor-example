@@ -12,7 +12,6 @@
 import { mapActions } from "vuex";
 
 export default {
-  name: "Highlight",
   props: ["highlight"],
   methods: {
     ...mapActions(["editHighlight"])
