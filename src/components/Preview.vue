@@ -28,6 +28,25 @@
           Getting a new business off the ground is a lot of hard work. Here are
           five ideas you can use to find your first customers.
         </p>
+
+        <div class="mt-2">
+          <div class="title">
+            {{ resume.job.title }} | {{ resume.job.company }}
+          </div>
+          <div class="range">
+            {{ resume.job.startDate }} - {{ resume.job.endDate }}
+          </div>
+          <div class="highlights">
+            <ul>
+              <li
+                v-for="(highlight, index) in resume.job.highlights"
+                :key="index"
+              >
+                {{ highlight.text }}
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>

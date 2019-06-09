@@ -62,6 +62,14 @@ describe("Loading layout", () => {
       .should("have.value", "");
 
     cy.get("[data-cy-highlight]:last").should("have.value", "New Highlight");
+    cy.get("[data-cy-preview-block]").should("contain", "New Highlight");
+
+    cy.get("[data-cy='job-title']")
+      .type("Job Title")
+      .blur()
+      .should("have.value", "Job Title");
+
+    cy.get("[data-cy-preview-block]").should("contain", "Job Title");
 
     cy.contains("Delete").click();
     cy.contains("Delete").click();

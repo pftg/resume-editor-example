@@ -10,6 +10,12 @@ export const mutations = {
     state.resume = { ...state.resume, ...attrs };
   },
 
+  // TODO: We need to find best way to pass such stuff. There is 2 options like this or like above
+  editJob(state, { job, ...attrs }) {
+    // state.resume.job = { ...job, ...attrs };
+    // instead of assigment new value to job, we change only some attrs
+    Object.assign(job, attrs);
+  },
   editHighlight(state, { highlight, text = highlight.text }) {
     highlight.text = text;
   },
@@ -74,6 +80,12 @@ export default new Vuex.Store({
           console.error("Reverting resume to previous version");
           commit("updateResume", savedResume);
         });
+    },
+
+    editJob({ commit }, attrs) {
+      console.log(attrs.job.title);
+      console.log(attrs.title);
+      commit("editJob", attrs);
     },
 
     editHighlight({ commit }, { highlight, value }) {

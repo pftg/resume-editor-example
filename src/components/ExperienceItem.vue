@@ -6,7 +6,8 @@
         type="text"
         placeholder="Title"
         :value="job.title"
-        @change="updateResume({ jobTitle: $event.target.value })"
+        @change="editJob({ job, title: $event.target.value })"
+        data-cy="job-title"
       />
     </div>
 
@@ -16,7 +17,7 @@
         type="text"
         placeholder="Company"
         :value="job.company"
-        @change="updateResume({ jobCompany: $event.target.value })"
+        @change="editJob({ job, company: $event.target.value })"
       />
     </div>
 
@@ -26,14 +27,14 @@
         type="text"
         placeholder="Start Date: mm/dd/yyyy"
         :value="job.startDate"
-        @change="updateResume({ jobStartDate: $event.target.value })"
+        @change="editJob({ job, startDate: $event.target.value })"
       />
       <input
         class="w-1/2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         type="text"
         placeholder="End Date: mm/dd/yyyy"
         :value="job.endDate"
-        @change="updateResume({ jobEndDate: $event.target.value })"
+        @change="editJob({ job, endDate: $event.target.value })"
       />
     </div>
 
@@ -62,7 +63,12 @@ export default {
   props: ["job"],
   components: { Highlight },
   methods: {
-    ...mapActions(["updateResume", "addHighlight", "removeHighlight"]),
+    ...mapActions([
+      "updateResume",
+      "addHighlight",
+      "removeHighlight",
+      "editJob"
+    ]),
     doneAdd(event) {
       this.addHighlight(event.target.value);
       event.target.value = "";
