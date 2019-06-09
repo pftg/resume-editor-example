@@ -17,7 +17,10 @@ export const mutations = {
     state.resume.job.highlights.push(highlight);
   },
   removeHighlight(state, highlight) {
-    state.resume.job.highlights.splice(state.resume.job.highlights.indexOf(highlight), 1);
+    state.resume.job.highlights.splice(
+      state.resume.job.highlights.indexOf(highlight),
+      1
+    );
   }
 };
 

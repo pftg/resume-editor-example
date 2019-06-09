@@ -1,14 +1,12 @@
 // https://docs.cypress.io/api/introduction/api.html
 
 describe("Loading layout", () => {
-  it("Success scenario to manage resume", () => {
-    cy.visit("/");
-
-    cy.contains("Start").click();
-
+  function expectsOnNamePage() {
     cy.url().should("include", "/name");
     cy.contains("label", "First Name");
+  }
 
+  function handleNameFormInputs() {
     cy.get("#first-name")
       .type("First Name")
       .should("have.value", "First Name")
@@ -19,6 +17,16 @@ describe("Loading layout", () => {
     cy.get("#last-name")
       .type("Last")
       .should("have.value", "Last");
+  }
+
+  it("Success scenario to manage resume", () => {
+    cy.visit("/");
+
+    cy.contains("Start").click();
+
+    expectsOnNamePage();
+
+    handleNameFormInputs();
 
     cy.contains("Next").click();
 
@@ -44,6 +52,25 @@ describe("Loading layout", () => {
 
     cy.get("[data-cy-preview-block]").should("contain", "| paul@example.com");
 
+    cy.contains("Next").click();
+
+    cy.url().should("include", "/experience");
+    cy.contains("Experience");
+
+    cy.get("[data-cy-new-highlight]")
+      .type("New Highlight{enter}")
+      .should("have.value", "");
+
+    cy.get("[data-cy-highlight]:last").should("have.value", "New Highlight");
+
+    cy.contains("Delete").click();
+    cy.contains("Delete").click();
+    cy.contains("Delete").click();
+    cy.contains("Delete").click();
+
+    cy.get("[data-cy-highlight]").should("have.length", 0);
+
+    cy.contains("Prev").click();
     cy.contains("Prev").click();
 
     cy.url().should("include", "/subtitle");
