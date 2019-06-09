@@ -14,6 +14,7 @@ export const mutations = {
   editJob(state, { job, ...attrs }) {
     // state.resume.job = { ...job, ...attrs };
     // instead of assigment new value to job, we change only some attrs
+    // we have everything predefined, this is not new attrs
     Object.assign(job, attrs);
   },
   editHighlight(state, { highlight, text = highlight.text }) {
