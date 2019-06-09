@@ -57,8 +57,11 @@ describe("Loading layout", () => {
     cy.url().should("include", "/experience");
     cy.contains("Experience");
 
+    cy.contains("Add Job").click();
+
     cy.get("[data-cy-new-highlight]")
-      .type("New Highlight{enter}")
+      .type("New Highlight")
+      .blur()
       .should("have.value", "");
 
     cy.get("[data-cy-highlight]:last").should("have.value", "New Highlight");
@@ -71,9 +74,6 @@ describe("Loading layout", () => {
 
     cy.get("[data-cy-preview-block]").should("contain", "Job Title");
 
-    cy.contains("Delete").click();
-    cy.contains("Delete").click();
-    cy.contains("Delete").click();
     cy.contains("Delete").click();
 
     cy.get("[data-cy-highlight]").should("have.length", 0);

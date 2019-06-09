@@ -10,6 +10,9 @@ export const mutations = {
     state.resume = { ...state.resume, ...attrs };
   },
 
+  addJob(state, job) {
+    state.resume.jobs.push(job);
+  },
   // TODO: We need to find best way to pass such stuff. There is 2 options like this or like above
   editJob(state, { job, ...attrs }) {
     // state.resume.job = { ...job, ...attrs };
@@ -17,17 +20,21 @@ export const mutations = {
     // we have everything predefined, this is not new attrs
     Object.assign(job, attrs);
   },
+
+  removeJob(state, job) {
+    state.resume.jobs.splice(state.resume.jobs.indexOf(job), 1);
+  },
+
   editHighlight(state, { highlight, text = highlight.text }) {
     highlight.text = text;
   },
-  addHighlight(state, highlight) {
-    state.resume.job.highlights.push(highlight);
+
+  addHighlight(state, { job, highlight }) {
+    job.highlights.push(highlight);
   },
-  removeHighlight(state, highlight) {
-    state.resume.job.highlights.splice(
-      state.resume.job.highlights.indexOf(highlight),
-      1
-    );
+
+  removeHighlight(state, { job, highlight }) {
+    job.highlights.splice(job.highlights.indexOf(highlight), 1);
   }
 };
 
@@ -49,6 +56,7 @@ export default new Vuex.Store({
         lastName: "",
         subtitle: "",
         email: "",
+        jobs: [],
         job: {
           title: "",
           company: "",
@@ -84,21 +92,33 @@ export default new Vuex.Store({
     },
 
     editJob({ commit }, attrs) {
-      console.log(attrs.job.title);
-      console.log(attrs.title);
       commit("editJob", attrs);
+    },
+
+    addJob({ commit }) {
+      commit("addJob", {
+        title: "",
+        company: "",
+        startDate: "",
+        endDate: "",
+        highlights: []
+      });
+    },
+
+    removeJob({ commit }, job) {
+      commit("removeJob", job);
     },
 
     editHighlight({ commit }, { highlight, value }) {
       commit("editHighlight", { highlight, text: value });
     },
 
-    addHighlight({ commit }, text) {
-      commit("addHighlight", { text });
+    addHighlight({ commit }, { job, ...highlight }) {
+      commit("addHighlight", { job, highlight });
     },
 
-    removeHighlight({ commit }, highlight) {
-      commit("removeHighlight", highlight);
+    removeHighlight({ commit }, { job, highlight }) {
+      commit("removeHighlight", { job, highlight });
     }
   }
 });

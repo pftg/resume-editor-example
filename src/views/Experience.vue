@@ -8,7 +8,11 @@
       <p class="text-sm">Add at least 3 jobs with 3 highlights each</p>
     </div>
 
-    <ExperienceItem :job="resume.job" />
+    <ExperienceItem
+      :job="job"
+      v-for="(job, index) in resume.jobs"
+      :key="index"
+    />
 
     <router-link
       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -16,6 +20,14 @@
     >
       Prev
     </router-link>
+
+    <div
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      @click="addJob"
+    >
+      Add Job
+    </div>
+
     <router-link
       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
       to="/"
@@ -32,7 +44,7 @@ import ExperienceItem from "@/components/ExperienceItem";
 export default {
   name: "Experience",
   components: { ExperienceItem },
-  methods: mapActions(["updateResume"]),
+  methods: mapActions(["updateResume", "addJob"]),
   computed: {
     ...mapState({ resume: state => state.resume })
   }

@@ -40,7 +40,7 @@
 
     <div :key="index" class="mb-4" v-for="(highlight, index) in job.highlights">
       <Highlight :highlight="highlight" />
-      <button @click="removeHighlight(highlight)">Delete</button>
+      <button @click="removeHighlight({ job, highlight })">Delete</button>
     </div>
 
     <div class="mb-4">
@@ -52,6 +52,8 @@
         @change="doneAdd"
       />
     </div>
+
+    <button @click="removeJob(job)">Delete Job</button>
   </div>
 </template>
 
@@ -67,10 +69,11 @@ export default {
       "updateResume",
       "addHighlight",
       "removeHighlight",
-      "editJob"
+      "editJob",
+      "removeJob"
     ]),
     doneAdd(event) {
-      this.addHighlight(event.target.value);
+      this.addHighlight({ job: this.job, text: event.target.value });
       event.target.value = "";
     }
   }
