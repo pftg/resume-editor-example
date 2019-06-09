@@ -37,8 +37,17 @@
       />
     </div>
 
+    <div :key="index" class="mb-4" v-for="(highlight, index) in job.highlights">
+      <Highlight :highlight="highlight" />
+    </div>
+
     <div class="mb-4">
-      <Highlight :highlight="job.highlight" />
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        type="text"
+        placeholder="Highlight"
+        @change="doneAdd"
+      />
     </div>
   </div>
 </template>
@@ -51,6 +60,12 @@ export default {
   name: "ExperienceItem",
   props: ["job"],
   components: { Highlight },
-  methods: mapActions(["updateResume"])
+  methods: {
+    ...mapActions(["updateResume", "addHighlight"]),
+    doneAdd(event) {
+      this.addHighlight(event.target.value);
+      event.target.value = "";
+    }
+  }
 };
 </script>

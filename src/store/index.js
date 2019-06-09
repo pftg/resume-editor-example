@@ -8,6 +8,13 @@ Vue.use(Vuex);
 export const mutations = {
   updateResume(state, attrs) {
     state.resume = { ...state.resume, ...attrs };
+  },
+
+  editHighlight(state, { highlight, text = highlight.text }) {
+    highlight.text = text;
+  },
+  addHighlight(state, highlight) {
+    state.resume.job.highlights.push(highlight);
   }
 };
 
@@ -23,7 +30,22 @@ export const plugins = [
 
 export default new Vuex.Store({
   state: {
-    resume: JSON.parse(window.localStorage.getItem(STORAGE_KEY) || "{}")
+    resume: {
+      ...{
+        firstName: "",
+        lastName: "",
+        subtitle: "",
+        email: "",
+        job: {
+          title: "",
+          company: "",
+          startDate: "",
+          endDate: "",
+          highlights: [{ text: "Highlight 1" }, { text: "Highlight 2" }]
+        }
+      },
+      ...JSON.parse(window.localStorage.getItem(STORAGE_KEY) || "{}")
+    }
   },
   plugins,
   mutations,
@@ -46,6 +68,14 @@ export default new Vuex.Store({
           console.error("Reverting resume to previous version");
           commit("updateResume", savedResume);
         });
+    },
+
+    editHighlight({ commit }, { highlight, value }) {
+      commit("editHighlight", { highlight, text: value });
+    },
+
+    addHighlight({ commit }, text) {
+      commit("addHighlight", { text });
     }
   }
 });

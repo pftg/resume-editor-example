@@ -8,7 +8,7 @@
       <p class="text-sm">Add at least 3 jobs with 3 highlights each</p>
     </div>
 
-    <ExperienceItem :job="job" />
+    <ExperienceItem :job="resume.job" />
 
     <router-link
       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -34,17 +34,7 @@ export default {
   components: { ExperienceItem },
   methods: mapActions(["updateResume"]),
   computed: {
-    ...mapState({ resume: state => state.resume }),
-    job() {
-      return {
-        title: this.resume.jobTitle,
-        company: this.resume.jobCompany,
-        startDate: this.resume.jobStartDate,
-        endDate: this.resume.jobEndDate,
-        highlight: this.resume.jobHighlight,
-        position: 0
-      };
-    }
+    ...mapState({ resume: state => state.resume })
   }
 };
 </script>
