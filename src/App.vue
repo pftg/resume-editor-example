@@ -191,7 +191,9 @@
                   >
                     <router-view />
                   </div>
-                  <div class="hidden xl:text-sm md:block xl:px-6 overflow-y-auto max-h-full">
+                  <div
+                    class="hidden xl:text-sm md:block xl:px-6 overflow-y-auto max-h-full"
+                  >
                     <Preview />
                   </div>
                 </div>
