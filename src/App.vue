@@ -68,7 +68,7 @@
         <div
           id="sidebar"
           class="fixed inset-0 pt-16 h-full bg-indigo-100 z-90 w-full border-b -mb-16
-             lg:-mb-0 lg:static lg:h-auto lg:overflow-y-visible lg:border-b-0 lg:pt-0 lg:w-40 xl:block lg:border-0
+             lg:-mb-0 lg:static lg:h-screen lg:overflow-y-visible lg:border-b-0 lg:pt-0 lg:w-40 xl:block lg:border-0
              hidden"
         >
           <div
@@ -180,18 +180,18 @@
 
         <div
           id="content-wrapper bg-gray-400"
-          class="min-h-screen w-full lg:static lg:max-h-full lg:overflow-visible bg-gray-100"
+          class="h-screen w-full lg:static lg:max-h-full lg:overflow-visible bg-gray-100"
         >
-          <div id="content">
-            <div id="_app" class="flex">
-              <div class="pt-24 pb-16 lg:pt-28 w-full">
-                <div class="flex">
+          <div id="content" class="h-full">
+            <div id="_app" class="flex h-full">
+              <div class="pt-24 pb-16 lg:pt-28 w-full h-full">
+                <div class="flex h-full">
                   <div
-                    class="markdown px-6 xl:px-12 w-full md:w-2/5 mx-auto lg:ml-0 lg:mr-auto xl:mx-0"
+                    class="markdown px-6 xl:px-12 w-full md:w-2/5 mx-auto lg:ml-0 lg:mr-auto xl:mx-0 overflow-y-auto max-h-full"
                   >
                     <router-view />
                   </div>
-                  <div class="hidden xl:text-sm md:block xl:px-6">
+                  <div class="hidden xl:text-sm md:block xl:px-6 overflow-y-auto max-h-full">
                     <Preview />
                   </div>
                 </div>
