@@ -31,17 +31,7 @@ export const actions = {
   },
 
   updateResume({ commit }, resume) {
-    // const savedResume = state.resume;
     commit("updateResume", resume);
-
-    // api
-    //   .updateResume(resume)
-    //   .then(() => console.log("success in resume update"))
-    //   .catch(errorMessage => {
-    //     console.error(errorMessage);
-    //     console.error("Reverting resume to previous version");
-    //     commit("updateResume", savedResume);
-    //   });
   },
 
   editJob({ commit }, attrs) {
@@ -122,7 +112,6 @@ export const storeSnapshotOnApi = store => {
         .then(() => console.log("success in resume update"))
         .catch(errorMessage => {
           console.error(errorMessage);
-          console.error("Reverting resume to previous version");
           fail();
         });
     },
@@ -132,10 +121,12 @@ export const storeSnapshotOnApi = store => {
 
   store.subscribe((mutation, { resume }) => {
     if (mutation.type !== "setResume") {
-      let prevResume = prevState;
-      let nextState = cloneDeep(resume);
-      updateOnApi(resume, () => store.commit("setResume", prevResume));
-      prevState = nextState;
+      const prevResume = prevState;
+      updateOnApi(resume, () => {
+        console.error("Reverting resume to previous version");
+        store.commit("setResume", prevResume);
+      });
+      prevState = cloneDeep(resume);
     }
   });
 };
