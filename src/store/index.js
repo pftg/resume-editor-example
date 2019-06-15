@@ -7,6 +7,22 @@ import { cloneDeep, debounce } from "lodash";
 
 Vue.use(Vuex);
 
+const STORAGE_KEY = "resume-editor-vuejs-example";
+
+const state = {
+  api,
+  resume: {
+    ...{
+      firstName: "",
+      lastName: "",
+      subtitle: "",
+      email: "",
+      jobs: []
+    },
+    ...JSON.parse(window.localStorage.getItem(STORAGE_KEY) || "{}")
+  }
+};
+
 export const actions = {
   fetchResume({ commit }) {
     api.getResume(resume => {
@@ -96,8 +112,6 @@ export const mutations = {
   }
 };
 
-const STORAGE_KEY = "resume-editor-vuejs-example";
-
 export const storeSnapshotOnApi = store => {
   let prevState = cloneDeep(store.state.resume);
 
@@ -113,7 +127,7 @@ export const storeSnapshotOnApi = store => {
         });
     },
     1500,
-    { leading: true }
+    { leading: true, maxWait: 3000 }
   );
 
   store.subscribe((mutation, { resume }) => {
@@ -137,27 +151,7 @@ export const plugins = [
 ];
 
 export default new Vuex.Store({
-  state: {
-    api,
-    resume: {
-      ...{
-        firstName: "",
-        lastName: "",
-        subtitle: "",
-        email: "",
-        jobs: [
-          {
-            title: "",
-            company: "",
-            startDate: "",
-            endDate: "",
-            highlights: [{ text: "Highlight 1" }, { text: "Highlight 2" }]
-          }
-        ]
-      },
-      ...JSON.parse(window.localStorage.getItem(STORAGE_KEY) || "{}")
-    }
-  },
+  state,
   plugins,
   mutations,
   actions

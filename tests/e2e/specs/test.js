@@ -59,7 +59,7 @@ describe("Loading layout", () => {
 
     cy.contains("Add Job").click();
 
-    cy.get("[data-cy-new-highlight]")
+    cy.get("[data-cy-new-highlight]:last()")
       .type("New Highlight")
       .blur()
       .should("have.value", "");
