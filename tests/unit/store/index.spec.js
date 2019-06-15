@@ -1,6 +1,6 @@
 import { mutations } from "@/store/";
 
-const { updateResume } = mutations;
+const { updateResume, editJob } = mutations;
 
 describe("mutations", () => {
   describe("updateResume", () => {
@@ -15,6 +15,24 @@ describe("mutations", () => {
       expect(state.resume).toEqual({
         firstName: "New First Name",
         lastName: "New Last Name"
+      });
+    });
+  });
+
+  describe("editJob", () => {
+    it("merge new changes", () => {
+      const job = { title: "Founder" };
+      const state = { resume: { jobs: [job] } };
+
+      editJob(state, {
+        job,
+        title: "Co-Founder",
+        company: "JetThoughts"
+      });
+
+      expect(state.resume.jobs[0]).toEqual({
+        title: "Co-Founder",
+        company: "JetThoughts"
       });
     });
   });

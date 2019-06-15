@@ -3,9 +3,67 @@ import Vuex from "vuex";
 
 import api from "@/api/hireclub-client";
 
+import { cloneDeep, debounce } from "lodash";
+
 Vue.use(Vuex);
 
+export const actions = {
+  fetchResume({ commit }) {
+    api.getResume(resume => {
+      commit("updateResume", resume);
+    });
+  },
+
+  updateResume({ commit }, resume) {
+    // const savedResume = state.resume;
+    commit("updateResume", resume);
+
+    // api
+    //   .updateResume(resume)
+    //   .then(() => console.log("success in resume update"))
+    //   .catch(errorMessage => {
+    //     console.error(errorMessage);
+    //     console.error("Reverting resume to previous version");
+    //     commit("updateResume", savedResume);
+    //   });
+  },
+
+  editJob({ commit }, attrs) {
+    commit("editJob", attrs);
+  },
+
+  addJob({ commit }) {
+    commit("addJob", {
+      title: "",
+      company: "",
+      startDate: "",
+      endDate: "",
+      highlights: []
+    });
+  },
+
+  removeJob({ commit }, job) {
+    commit("removeJob", job);
+  },
+
+  editHighlight({ commit }, { highlight, value }) {
+    commit("editHighlight", { highlight, text: value });
+  },
+
+  addHighlight({ commit }, { job, ...highlight }) {
+    commit("addHighlight", { job, highlight });
+  },
+
+  removeHighlight({ commit }, { job, highlight }) {
+    commit("removeHighlight", { job, highlight });
+  }
+};
+
 export const mutations = {
+  setResume(state, attrs) {
+    state.resume = { ...state.resume, ...attrs };
+  },
+
   updateResume(state, attrs) {
     state.resume = { ...state.resume, ...attrs };
   },
@@ -38,87 +96,69 @@ export const mutations = {
   }
 };
 
-export const STORAGE_KEY = "resume-editor-vuejs-example";
+const STORAGE_KEY = "resume-editor-vuejs-example";
 
-export const plugins = [
-  store => {
-    store.subscribe((mutation, { resume }) => {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(resume));
-    });
-  }
-];
+export const storeSnapshotOnApi = store => {
+  let prevState = cloneDeep(store.state.resume);
 
-export default new Vuex.Store({
-  state: {
-    resume: {
-      ...{
-        firstName: "",
-        lastName: "",
-        subtitle: "",
-        email: "",
-        jobs: [],
-        job: {
-          title: "",
-          company: "",
-          startDate: "",
-          endDate: "",
-          highlights: [{ text: "Highlight 1" }, { text: "Highlight 2" }]
-        }
-      },
-      ...JSON.parse(window.localStorage.getItem(STORAGE_KEY) || "{}")
-    }
-  },
-  plugins,
-  mutations,
-  actions: {
-    fetchResume({ commit }) {
-      api.getResume(resume => {
-        commit("updateResume", resume);
-      });
-    },
-
-    updateResume({ state, commit }, resume) {
-      const savedResume = state.resume;
-      commit("updateResume", resume);
-
+  const updateOnApi = debounce(
+    (resume, fail) => {
       api
         .updateResume(resume)
         .then(() => console.log("success in resume update"))
         .catch(errorMessage => {
           console.error(errorMessage);
           console.error("Reverting resume to previous version");
-          commit("updateResume", savedResume);
+          fail();
         });
     },
+    1500,
+    { leading: true }
+  );
 
-    editJob({ commit }, attrs) {
-      commit("editJob", attrs);
-    },
-
-    addJob({ commit }) {
-      commit("addJob", {
-        title: "",
-        company: "",
-        startDate: "",
-        endDate: "",
-        highlights: []
-      });
-    },
-
-    removeJob({ commit }, job) {
-      commit("removeJob", job);
-    },
-
-    editHighlight({ commit }, { highlight, value }) {
-      commit("editHighlight", { highlight, text: value });
-    },
-
-    addHighlight({ commit }, { job, ...highlight }) {
-      commit("addHighlight", { job, highlight });
-    },
-
-    removeHighlight({ commit }, { job, highlight }) {
-      commit("removeHighlight", { job, highlight });
+  store.subscribe((mutation, { resume }) => {
+    if (mutation.type !== "setResume") {
+      let prevResume = prevState;
+      let nextState = cloneDeep(resume);
+      updateOnApi(resume, () => store.commit("setResume", prevResume));
+      prevState = nextState;
     }
-  }
+  });
+};
+
+export const plugins = [
+  store => {
+    store.subscribe((mutation, { resume }) => {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(resume));
+    });
+  },
+
+  storeSnapshotOnApi
+];
+
+export default new Vuex.Store({
+  state: {
+    api,
+    resume: {
+      ...{
+        firstName: "",
+        lastName: "",
+        subtitle: "",
+        email: "",
+        jobs: [
+          {
+            title: "",
+            company: "",
+            startDate: "",
+            endDate: "",
+            highlights: [{ text: "Highlight 1" }, { text: "Highlight 2" }]
+          }
+        ]
+      },
+      ...JSON.parse(window.localStorage.getItem(STORAGE_KEY) || "{}")
+    }
+  },
+  plugins,
+  mutations,
+  actions
 });
