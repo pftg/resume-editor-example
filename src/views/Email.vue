@@ -16,7 +16,7 @@
           type="email"
           placeholder="paul.keen@jetthoughts.com"
           :value="resume.email"
-          @change="updateResume({ email: $event.target.value })"
+          @input="updateResume({ email: $event.target.value })"
         />
       </div>
     </div>

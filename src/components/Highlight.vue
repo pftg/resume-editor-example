@@ -5,7 +5,7 @@
     placeholder="Highlight"
     :value="highlight.text"
     data-cy-highlight
-    @change="editHighlight({ highlight, value: $event.target.value })"
+    @input="editHighlight({ highlight, value: $event.target.value })"
   />
 </template>
 

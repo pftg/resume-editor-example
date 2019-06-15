@@ -72,7 +72,7 @@ describe("ExperienceItem.vue", () => {
     const $title = wrapper.find('[data-cy="job-title"]');
 
     $title.element.value = "Co-Founder";
-    $title.trigger("change");
+    $title.trigger("input");
 
     expect(actions.editJob).toHaveBeenCalled();
   });

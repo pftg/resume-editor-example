@@ -19,6 +19,7 @@ const state = {
       email: "",
       jobs: []
     },
+    // Load default data
     ...JSON.parse(window.localStorage.getItem(STORAGE_KEY) || "{}")
   }
 };
@@ -102,7 +103,7 @@ export const mutations = {
   }
 };
 
-export const storeSnapshotOnApi = store => {
+export const autosaverPlugin = store => {
   let prevState = cloneDeep(store.state.resume);
 
   const updateOnApi = debounce(
@@ -134,11 +135,13 @@ export const storeSnapshotOnApi = store => {
 export const plugins = [
   store => {
     store.subscribe((mutation, { resume }) => {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(resume));
+      if (mutation.type !== "setResume") {
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(resume));
+      }
     });
   },
 
-  storeSnapshotOnApi
+  autosaverPlugin
 ];
 
 export default new Vuex.Store({

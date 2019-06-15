@@ -36,12 +36,12 @@ describe("Name.vue", () => {
     expect($firstName.element.value).toMatch("FirstName");
   });
 
-  it("updates names on change", () => {
+  it("updates names on keyup", () => {
     const wrapper = shallowMount(Name, { store, localVue });
 
     const $firstName = wrapper.find("input#first-name");
     $firstName.element.value = "New First Name";
-    $firstName.trigger("change");
+    $firstName.trigger("input");
 
     expect(actions.updateResume).toHaveBeenCalled();
   });

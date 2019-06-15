@@ -40,7 +40,7 @@ describe("Subtitle.vue", () => {
 
     const $subtitle = wrapper.find("input#subtitle");
     $subtitle.element.value = "New Subtitle";
-    $subtitle.trigger("change");
+    $subtitle.trigger("input");
 
     expect(actions.updateResume).toHaveBeenCalled();
   });

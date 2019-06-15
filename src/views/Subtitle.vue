@@ -16,7 +16,7 @@
           type="text"
           placeholder="Founder"
           :value="resume.subtitle"
-          @change="updateResume({ subtitle: $event.target.value })"
+          @input="updateResume({ subtitle: $event.target.value })"
         />
       </div>
     </div>

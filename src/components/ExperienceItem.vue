@@ -6,7 +6,7 @@
         type="text"
         placeholder="Title"
         :value="job.title"
-        @change="editJob({ job, title: $event.target.value })"
+        @input="editJob({ job, title: $event.target.value })"
         data-cy="job-title"
       />
     </div>
@@ -17,7 +17,7 @@
         type="text"
         placeholder="Company"
         :value="job.company"
-        @change="editJob({ job, company: $event.target.value })"
+        @input="editJob({ job, company: $event.target.value })"
       />
     </div>
 
@@ -27,14 +27,14 @@
         type="text"
         placeholder="Start Date: mm/dd/yyyy"
         :value="job.startDate"
-        @change="editJob({ job, startDate: $event.target.value })"
+        @input="editJob({ job, startDate: $event.target.value })"
       />
       <input
         class="w-1/2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         type="text"
         placeholder="End Date: mm/dd/yyyy"
         :value="job.endDate"
-        @change="editJob({ job, endDate: $event.target.value })"
+        @input="editJob({ job, endDate: $event.target.value })"
       />
     </div>
 
@@ -49,7 +49,7 @@
         type="text"
         data-cy-new-highlight
         placeholder="New Highlight"
-        @change="doneAdd"
+        @input="doneAdd"
       />
     </div>
 

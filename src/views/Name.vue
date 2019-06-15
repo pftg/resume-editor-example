@@ -21,8 +21,8 @@
           id="first-name"
           type="text"
           placeholder="Paul"
-          :value="resume.firstName"
-          @change="updateResume({ firstName: $event.target.value })"
+          v-model.trim="resume.firstName"
+          @input="updateResume({ firstName: $event.target.value })"
         />
       </div>
       <div class="mb-4">
@@ -38,7 +38,7 @@
           type="text"
           placeholder="Keen"
           :value="resume.lastName"
-          @change="updateResume({ lastName: $event.target.value })"
+          @input="updateResume({ lastName: $event.target.value })"
         />
       </div>
     </div>
