@@ -11,6 +11,7 @@ const STORAGE_KEY = "resume-editor-vuejs-example";
 
 const state = {
   api,
+  media: { photo: null },
   resume: {
     ...{
       firstName: "",

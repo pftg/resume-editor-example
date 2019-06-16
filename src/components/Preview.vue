@@ -1,10 +1,10 @@
 <template>
   <div id="preview" class="mb-8" data-cy-preview-block>
     <div class="md:flex">
-      <div class="md:flex-shrink-0">
+      <div class="md:flex-shrink-0" v-if="media.photo">
         <img
           class="rounded-lg md:w-56"
-          src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=448&q=80"
+          :src="media.photo"
           alt="Woman paying for a purchase"
         />
       </div>
@@ -57,7 +57,7 @@ import { mapState } from "vuex";
 export default {
   name: "Preview",
   computed: {
-    ...mapState(["resume"]),
+    ...mapState(["resume", "media"]),
     resume_email_uri() {
       return `mailto://${this.$store.state.resume.email}`;
     }
