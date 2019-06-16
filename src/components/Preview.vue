@@ -32,8 +32,9 @@
         <div v-for="(job, index) in resume.jobs" :key="index">
           <div class="mt-2">
             <div class="uppercase tracking-wide text-sm font-bold">
-              {{ job.title }}<span v-if="job.title && job.company"> | </span
-              >{{ job.company }}
+              {{ job.title }}
+              <span v-if="job.title && job.company"> | </span>
+              {{ job.company }}
             </div>
             <div
               class="block mt-1 leading-tight font-semibold text-gray-900"
