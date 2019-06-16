@@ -8,6 +8,13 @@ import "@/assets/css/tailwind.css";
 
 Vue.config.productionTip = false;
 
+import moment from "moment";
+Vue.filter("formatDate", function(value) {
+  if (value) {
+    return moment(String(value)).format("MMM YY");
+  }
+});
+
 new Vue({
   router,
   store,

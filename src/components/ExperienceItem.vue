@@ -22,20 +22,17 @@
     </div>
 
     <div class="mb-4 flex flex-wrap">
-      <input
-        class="w-1/2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        type="text"
-        placeholder="Start Date: mm/dd/yyyy"
-        :value="job.startDate"
-        @input="editJob({ job, startDate: $event.target.value })"
-      />
-      <input
-        class="w-1/2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        type="text"
-        placeholder="End Date: mm/dd/yyyy"
-        :value="job.endDate"
-        @input="editJob({ job, endDate: $event.target.value })"
-      />
+      <vue-monthly-picker
+        v-model="job.startDate"
+        @change="editJob({ job, startDate: $event.target.value })"
+      >
+      </vue-monthly-picker>
+
+      <vue-monthly-picker
+        v-model="job.endDate"
+        @change="editJob({ job, endDate: $event.target.value })"
+      >
+      </vue-monthly-picker>
     </div>
 
     <div :key="index" class="mb-4" v-for="(highlight, index) in job.highlights">
@@ -59,11 +56,13 @@
 
 <script>
 import { mapActions } from "vuex";
+
+import VueMonthlyPicker from "vue-monthly-picker";
 import Highlight from "@/components/Highlight";
 
 export default {
   props: ["job"],
-  components: { Highlight },
+  components: { Highlight, VueMonthlyPicker },
   methods: {
     ...mapActions([
       "updateResume",

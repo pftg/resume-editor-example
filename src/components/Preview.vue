@@ -32,10 +32,16 @@
         <div v-for="(job, index) in resume.jobs" :key="index">
           <div class="mt-2">
             <div class="uppercase tracking-wide text-sm font-bold">
-              {{ job.title }} | {{ job.company }}
+              {{ job.title }}<span v-if="job.title && job.company"> | </span
+              >{{ job.company }}
             </div>
-            <div class="block mt-1 leading-tight font-semibold text-gray-900">
-              {{ job.startDate }} - {{ job.endDate }}
+            <div
+              class="block mt-1 leading-tight font-semibold text-gray-900"
+              v-if="job.startDate"
+            >
+              {{ job.startDate | formatDate }} -
+              <span v-if="job.endDate">{{ job.endDate | formatDate }}</span
+              ><span v-if="!job.endDate">Now</span>
             </div>
             <div class="mt-2 text-gray-600">
               <ul class="list-disc">
