@@ -15,6 +15,10 @@ Vue.filter("formatDate", function(value) {
   }
 });
 
+import VeeValidate from "vee-validate";
+
+Vue.use(VeeValidate);
+
 new Vue({
   router,
   store,
