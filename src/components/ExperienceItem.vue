@@ -49,7 +49,7 @@
         type="text"
         data-cy-new-highlight
         placeholder="New Highlight"
-        @input="doneAdd"
+        @change="doneAdd"
       />
     </div>
 
