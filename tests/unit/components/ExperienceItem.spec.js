@@ -54,7 +54,7 @@ describe("ExperienceItem.vue", () => {
       }
     });
 
-    const $title = wrapper.find("[data-cy=\"job-title\"]");
+    const $title = wrapper.find('[data-cy="job-title"]');
     expect($title.element.value).toMatch("Founder");
   });
 
@@ -89,12 +89,12 @@ describe("ExperienceItem.vue", () => {
       }
     });
 
-    const $title = wrapper.find("[data-cy=\"job-title\"]");
+    const $title = wrapper.find('[data-cy="job-title"]');
 
     $title.element.value = "Co-Founder";
     $title.trigger("input");
 
-    await flushPromises()
+    await flushPromises();
 
     expect(actions.editJob).toHaveBeenCalled();
   });
@@ -114,7 +114,7 @@ describe("ExperienceItem.vue", () => {
       }
     });
 
-    await flushPromises()
+    await flushPromises();
     const error = wrapper.find(".js-end_date-error");
     expect(error.text()).toBe("The End Date must be after Start Date.");
   });

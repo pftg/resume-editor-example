@@ -22,37 +22,38 @@
     </div>
 
     <div>
-      <p class="text-red-500 text-xs italic js-start_date-error" v-if="errors.has('startDate')">
-        {{ errors.first("startDate") }}
-      </p>
+      <ValidationObserver v-slot="{invalid, errors}">
+        {{ errors }}
+        <div class="mb-4" v-if="invalid">
+          <span v-for="(error, index) in errors['startDate']" :key="index">{{ error }}</span>
+          <span v-for="(error, index) in errors['endDate']" :key="index">{{ error }}</span>
+        </div>
 
-      <p class="text-red-500 text-xs italic js-end_date-error" v-if="errors.has('endDate')">
-        {{ errors.first("endDate") }}
-      </p>
+        <div class="mb-4 flex flex-wrap">
+          <div>
+            <ValidationProvider
+              name="Start Date"
+              ref="startDateProvider"
+              v-slot="{ errors }"
+              :immediate="true"
+            >
+              <vue-monthly-picker v-model="startDate" />
+            </ValidationProvider>
+          </div>
 
-    </div>
-    <div class="mb-4 flex flex-wrap">
+          <div>
+            <ValidationProvider
+              name="End Date"
+              rules="after:startDate"
+              v-slot="{ errors }"
+              :immediate="true"
+            >
+              <vue-monthly-picker v-model="endDate" />
+            </ValidationProvider>
+          </div>
+        </div>
 
-      <div>
-        <ValidationProvider rules="date_format:yyyy/MM" v-slot="{ errors }" vid="startDate">
-          <input v-model="startDate" type="text">
-          <span>{{ errors[0] }}</span>
-        </ValidationProvider>
-      </div>
-
-      <div>
-        <ValidationProvider rules="date_format:yyyy/MM|after:startDate" v-slot="{ errors }">
-          <input v-model="endDate" type="text" />
-          <span>{{ errors[0] }}</span>
-        </ValidationProvider>
-      </div>
-
-      <div>
-        <ValidationProvider rules="date_format:yyyy/MM|after:startDate" v-slot="{ errors }">
-          <vue-monthly-picker v-model="endDate" ref="endDate" />
-          <span>{{ errors[0] }}</span>
-        </ValidationProvider>
-      </div>
+      </ValidationObserver>
     </div>
 
     <div :key="index" class="mb-4" v-for="(highlight, index) in job.highlights">
@@ -76,14 +77,15 @@
 
 <script>
 import { mapActions } from "vuex";
-import { ValidationProvider } from "vee-validate";
+import { ValidationProvider, ValidationObserver } from "vee-validate";
+import moment from "moment"
 
 import VueMonthlyPicker from "vue-monthly-picker";
 import Highlight from "@/components/Highlight";
 
 export default {
   props: ["job"],
-  components: { Highlight, VueMonthlyPicker, ValidationProvider },
+  components: { Highlight, VueMonthlyPicker, ValidationProvider, ValidationObserver },
   methods: {
     ...mapActions([
       "updateResume",
@@ -100,7 +102,7 @@ export default {
   computed: {
     startDate: {
       get() {
-        return this.job.startDate;
+        return moment(String(this.job.startDate));
       },
       set(value) {
         this.editJob({ job: this.job, startDate: value });
@@ -108,7 +110,7 @@ export default {
     },
     endDate: {
       get() {
-        return this.job.endDate;
+        return moment(String(this.job.endDate));
       },
       set(value) {
         this.editJob({ job: this.job, endDate: value });
