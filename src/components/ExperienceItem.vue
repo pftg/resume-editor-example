@@ -25,8 +25,8 @@
       <ValidationObserver v-slot="{invalid, errors}">
         {{ errors }}
         <div class="mb-4" v-if="invalid">
-          <span v-for="(error, index) in errors['startDate']" :key="index">{{ error }}</span>
-          <span v-for="(error, index) in errors['endDate']" :key="index">{{ error }}</span>
+          <span v-for="(error, index) in errors" :key="index">{{ error }}</span>
+          <span v-for="(error, index) in errors" :key="index">{{ error }}</span>
         </div>
 
         <div class="mb-4 flex flex-wrap">
