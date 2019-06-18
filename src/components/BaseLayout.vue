@@ -6,7 +6,7 @@
 
     <slot></slot>
 
-    <div class="flex justify-around">
+    <div class="flex justify-around sticky bottom-0">
       <router-link
         class="btn -circle"
         :to="prevPath"

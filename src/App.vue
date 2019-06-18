@@ -184,17 +184,19 @@
         >
           <div id="content" class="h-full">
             <div id="_app" class="flex h-full">
-              <div class="pt-24 pb-16 lg:pt-28 w-full h-full">
-                <div class="flex h-full">
-                  <div
-                    class="markdown px-6 xl:px-12 w-full md:w-2/5 mx-auto lg:ml-0 lg:mr-auto xl:mx-0 overflow-y-auto max-h-full"
-                  >
-                    <router-view />
-                  </div>
-                  <div
-                    class="hidden xl:text-sm md:block xl:px-6 overflow-y-auto max-h-full"
-                  >
-                    <Preview />
+              <div class="pt-16 w-full h-full">
+                <div class="py-6 w-full h-full">
+                  <div class="flex h-full">
+                    <div
+                      class="markdown px-6 xl:px-12 w-full md:w-2/5 mx-auto lg:ml-0 lg:mr-auto xl:mx-0 overflow-y-auto max-h-full"
+                    >
+                      <router-view />
+                    </div>
+                    <div
+                      class="hidden xl:text-sm md:block xl:px-6 overflow-y-auto max-h-full"
+                    >
+                      <Preview />
+                    </div>
                   </div>
                 </div>
               </div>
