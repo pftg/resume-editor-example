@@ -1,9 +1,9 @@
 <template>
-  <base-layout name="Name" nextPath="/subtitle">
+  <base-layout name="Name" prevPath="/" nextPath="/subtitle">
     <template #header>
       Use your first and last name. No nicknames
     </template>
-    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div class="card">
       <text-field
         placeholder="Paul"
         label="First Name"

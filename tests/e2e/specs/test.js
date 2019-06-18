@@ -22,13 +22,13 @@ describe("Loading layout", () => {
   it("Success scenario to manage resume", () => {
     cy.visit("/");
 
-    cy.contains("Next").click();
+    cy.get("[data-cy=nav-next]").click();
 
     expectsOnNamePage();
 
     handleNameFormInputs();
 
-    cy.contains("Next").click();
+    cy.get("[data-cy=nav-next]").click();
 
     cy.url().should("include", "/subtitle");
     cy.contains("Subtitle");
@@ -40,7 +40,7 @@ describe("Loading layout", () => {
 
     cy.get("[data-cy-preview-block]").should("contain", "Founder");
 
-    cy.contains("Next").click();
+    cy.get("[data-cy=nav-next]").click();
 
     cy.url().should("include", "/email");
     cy.contains("Email");
@@ -52,7 +52,7 @@ describe("Loading layout", () => {
 
     cy.get("[data-cy-preview-block]").should("contain", "| paul@example.com");
 
-    cy.contains("Next").click();
+    cy.get("[data-cy=nav-next]").click();
 
     cy.url().should("include", "/experience");
     cy.contains("Experience");
@@ -78,8 +78,11 @@ describe("Loading layout", () => {
 
     cy.get("[data-cy-highlight]").should("have.length", 0);
 
-    cy.contains("Prev").click();
-    cy.contains("Prev").click();
+    cy.contains("Add Job").click();
+    cy.contains("Delete Job").click();
+
+    cy.get("[data-cy=nav-prev").click();
+    cy.get("[data-cy=nav-prev").click();
 
     cy.url().should("include", "/subtitle");
     cy.contains("Subtitle");
@@ -105,7 +108,7 @@ describe("Loading layout", () => {
     );
     cy.get("[data-cy-preview-block]").should("contain", "paul@example.com");
 
-    cy.contains("Prev").click();
+    cy.get("[data-cy=nav-prev").click();
 
     cy.get("#last-name")
       .clear()

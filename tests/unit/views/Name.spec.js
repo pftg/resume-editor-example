@@ -1,4 +1,4 @@
-import { createLocalVue, shallowMount } from "@vue/test-utils";
+import { createLocalVue, mount, shallowMount } from "@vue/test-utils";
 import Vuex from "vuex";
 // NOTE: We do not need it to use for our tests. But because of warning we have to enable it
 import router from "@/router";
@@ -6,6 +6,11 @@ import router from "@/router";
 import Name from "@/views/Name.vue";
 
 const localVue = createLocalVue();
+
+localVue.component("base-layout", require("@/components/BaseLayout").default);
+localVue.component("page-details", require("@/components/PageDetails").default);
+localVue.component("text-field", require("@/components/BaseTextField").default);
+
 localVue.use(Vuex);
 localVue.use(router);
 
@@ -25,23 +30,27 @@ describe("Name.vue", () => {
           lastName: "LastName"
         }
       },
-      actions
+      actions,
+      router
     });
   });
 
-  it("renders form with names from store", () => {
-    const wrapper = shallowMount(Name, { store, localVue });
+  it("renders views with state", () => {
+    const wrapper = mount(Name, {
+      store,
+      localVue,
+      stubs: { RouterLink: true }
+    });
 
-    const $firstName = wrapper.find("input#first-name");
-    expect($firstName.element.value).toMatch("FirstName");
+    expect(wrapper.find("#first-name").element.value).toMatch("FirstName");
+    expect(wrapper.find("#last-name").element.value).toMatch("LastName");
   });
 
   it("updates names on keyup", () => {
     const wrapper = shallowMount(Name, { store, localVue });
+    const $firstName = wrapper.find("#first-name");
 
-    const $firstName = wrapper.find("input#first-name");
-    $firstName.element.value = "New First Name";
-    $firstName.trigger("input");
+    $firstName.vm.$emit("input", "New First Name");
 
     expect(actions.updateResume).toHaveBeenCalled();
   });

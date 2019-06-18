@@ -6,21 +6,23 @@
 
     <slot></slot>
 
-    <div>
+    <div class="flex justify-around">
       <router-link
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        class="btn -circle"
         :to="prevPath"
         v-if="prevPath"
-      >
-        Prev
+        data-cy="nav-prev"
+        >&lt;
       </router-link>
+      <div class="btn -circle -disabled" v-else>&lt;</div>
       <slot name="footer"></slot>
       <router-link
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        class="btn -circle"
         :to="nextPath"
         v-if="nextPath"
+        data-cy="nav-next"
       >
-        Next
+        &gt;
       </router-link>
     </div>
   </div>

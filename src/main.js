@@ -4,7 +4,8 @@ import router from "./router";
 import store from "./store/";
 import "./registerServiceWorker";
 
-import "@/assets/css/tailwind.css";
+import "@/assets/css/application.css";
+import "@/assets/css/_components.scss";
 
 Vue.config.productionTip = false;
 
@@ -20,13 +21,9 @@ import VeeValidate from "vee-validate";
 
 Vue.use(VeeValidate);
 
-import TextField from "@/components/TextField";
-import PageDetails from "@/components/PageDetails";
-import BaseLayout from "@/components/BaseLayout.vue";
-
-Vue.component("text-field", TextField);
-Vue.component("page-details", PageDetails);
-Vue.component("base-layout", BaseLayout);
+Vue.component("base-layout", require("@/components/BaseLayout").default);
+Vue.component("page-details", require("@/components/PageDetails").default);
+Vue.component("text-field", require("@/components/BaseTextField").default);
 
 new Vue({
   router,

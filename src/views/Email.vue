@@ -4,7 +4,7 @@
       professional email
     </template>
 
-    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div class="card">
       <div class="mb-4">
         <p class="text-red-500 text-xs italic" v-if="emailError">
           {{ errors.first("email") }}
