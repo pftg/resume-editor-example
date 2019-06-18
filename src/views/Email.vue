@@ -1,12 +1,8 @@
 <template>
-  <div>
-    <div
-      class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 mb-6"
-      role="alert"
-    >
-      <p class="font-bold">Email</p>
-      <p class="text-sm">professional email</p>
-    </div>
+  <base-layout name="Email" prevPath="/subtitle" nextPath="/experience">
+    <template #header>
+      professional email
+    </template>
 
     <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
       <div class="mb-4">
@@ -28,19 +24,7 @@
         />
       </div>
     </div>
-    <router-link
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      to="/subtitle"
-    >
-      Prev
-    </router-link>
-    <router-link
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      to="/experience"
-    >
-      Next
-    </router-link>
-  </div>
+  </base-layout>
 </template>
 
 <script>

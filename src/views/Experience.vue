@@ -1,12 +1,8 @@
 <template>
-  <div>
-    <div
-      class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 mb-6"
-      role="alert"
-    >
-      <p class="font-bold">Experience</p>
-      <p class="text-sm">Add at least 3 jobs with 3 highlights each</p>
-    </div>
+  <base-layout name="Experience" prevPath="/email" nextPath="/name">
+    <template #header>
+      Add at least 3 jobs with 3 highlights each
+    </template>
 
     <ExperienceItem
       :job="job"
@@ -14,27 +10,15 @@
       :key="index"
     />
 
-    <router-link
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      to="/email"
-    >
-      Prev
-    </router-link>
-
-    <div
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      @click="addJob"
-    >
-      Add Job
-    </div>
-
-    <router-link
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      to="/"
-    >
-      Next
-    </router-link>
-  </div>
+    <template #footer>
+      <div
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        @click="addJob"
+      >
+        Add Job
+      </div>
+    </template>
+  </base-layout>
 </template>
 
 <script>

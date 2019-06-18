@@ -1,26 +1,17 @@
 <template>
-  <div class="home">
-    <div
-      class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 mb-6"
-      role="alert"
+  <base-layout name="Photo" class="home" nextPath="/name">
+    <template #header
+      >Upload your photo</template
     >
-      <p class="font-bold">Photo</p>
-      <p class="text-sm">Upload your photo</p>
+
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div v-if="media.photo">
+        <img alt="Photo" :src="media.photo" />
+      </div>
+
+      <input type="file" @change="onFileSelected" />
     </div>
-
-    <div v-if="media.photo">
-      <img alt="Photo" :src="media.photo" />
-    </div>
-
-    <input type="file" @change="onFileSelected" />
-
-    <router-link
-      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      to="/name"
-    >
-      Start
-    </router-link>
-  </div>
+  </base-layout>
 </template>
 
 <script>
