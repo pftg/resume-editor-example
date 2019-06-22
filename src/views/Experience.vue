@@ -4,11 +4,15 @@
       Add at least 3 jobs with 3 highlights each
     </template>
 
-    <ExperienceItem
-      :job="job"
-      v-for="(job, index) in resume.jobs"
-      :key="index"
-    />
+    <draggable v-model="jobs" group="experience" @start="drag=true" @end="drag=false">
+      <ExperienceItem
+        :job="job"
+        v-for="(job, index) in resume.jobs"
+        :key="index"
+        class="cursor-move"
+      />
+    </draggable>
+
 
     <template #footer>
       <div class="btn items-center justify-center flex" @click="addJob">
@@ -22,12 +26,23 @@
 import { mapActions, mapState } from "vuex";
 import ExperienceItem from "@/components/ExperienceItem";
 
+import draggable from "vuedraggable";
+
 export default {
   name: "Experience",
-  components: { ExperienceItem },
+  components: { ExperienceItem, draggable },
   methods: mapActions(["updateResume", "addJob"]),
   computed: {
-    ...mapState({ resume: state => state.resume })
+    ...mapState({ resume: state => state.resume }),
+    jobs: {
+      get() {
+        return this.resume.jobs;
+      },
+
+      set(value) {
+        this.updateResume({ jobs: value });
+      }
+    }
   }
 };
 </script>
