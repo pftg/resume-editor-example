@@ -15,9 +15,9 @@
 
 
     <template #footer>
-      <div class="btn items-center justify-center flex" @click="addJob">
+      <button class="btn items-center justify-center flex" @click="addJob">
         Add Job
-      </div>
+      </button>
     </template>
   </base-layout>
 </template>
