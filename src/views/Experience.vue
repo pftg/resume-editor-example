@@ -4,7 +4,7 @@
       Add at least 3 jobs with 3 highlights each
     </template>
 
-    <draggable v-model="jobs" group="experience" @start="drag=true" @end="drag=false">
+    <draggable v-model="jobs" group="experience" animation="0" data-cy="experiences">
       <ExperienceItem
         :job="job"
         v-for="(job, index) in resume.jobs"

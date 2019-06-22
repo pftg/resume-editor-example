@@ -74,12 +74,12 @@ describe("Loading layout", () => {
 
     cy.get("[data-cy-preview-block]").should("contain", "Job Title");
 
-    cy.contains("Delete").click();
+    cy.get("[data-cy=delete-highlight]").click();
 
     cy.get("[data-cy-highlight]").should("have.length", 0);
 
     cy.contains("Add Job").click();
-    cy.contains("Delete Job").click();
+    cy.get("[data-cy=delete-job]").first().click();
 
     cy.get("[data-cy=nav-prev").click();
     cy.get("[data-cy=nav-prev").click();
