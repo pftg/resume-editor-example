@@ -49,7 +49,7 @@
         v-for="(highlight, index) in job.highlights"
       >
         <svg
-          class=" h-6 w-6 handle cursor-move"
+          class=" h-6 w-6 handle cursor-move text-gray-700 fill-current"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           width="24"
@@ -62,7 +62,7 @@
         </svg>
         <Highlight :highlight="highlight" class="w-full ml-3" />
         <button
-          class="ml-3 h-6 w-6"
+          class="ml-3 h-6 w-6 text-gray-700 fill-current"
           @click="removeHighlight({ job, highlight })"
           data-cy="delete-highlight"
         >
@@ -96,7 +96,7 @@
       @click="removeJob(job)"
       ref="deleteJob"
       data-cy="delete-job"
-      class="top-0 right-0 absolute h-8 w-8 -mr-4 -mt-4"
+      class="top-0 right-0 absolute h-8 w-8 -mr-4 -mt-4 text-gray-700 fill-current"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
