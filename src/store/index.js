@@ -3,15 +3,16 @@ import Vuex from "vuex";
 
 import api from "@/api/hireclub-client";
 
+import * as UserModule from "./user";
+
 import { cloneDeep, debounce } from "lodash";
 
 Vue.use(Vuex);
 
-const STORAGE_KEY = "resume-editor-vuejs-example";
-
 const state = {
   api,
   media: { photo: null },
+  loaded: false,
   resume: {
     ...{
       firstName: "",
@@ -19,17 +20,20 @@ const state = {
       subtitle: "",
       email: "",
       jobs: []
-    },
-    // Load default data
-    ...JSON.parse(window.localStorage.getItem(STORAGE_KEY) || "{}")
+    }
   }
 };
 
 export const actions = {
-  fetchResume({ commit }) {
-    api.getResume(resume => {
-      commit("updateResume", resume);
-    });
+  async startup({ dispatch, commit }) {
+    commit("loaded", false);
+
+    await dispatch("user/fetch");
+
+    let resume = await api.getResume();
+
+    commit("setResume", resume);
+    commit("loaded", true);
   },
 
   updateResume({ commit }, resume) {
@@ -68,6 +72,10 @@ export const actions = {
 };
 
 export const mutations = {
+  loaded(state, status) {
+    state.loaded = status;
+  },
+
   setResume(state, attrs) {
     state.resume = { ...state.resume, ...attrs };
   },
@@ -104,7 +112,7 @@ export const mutations = {
   }
 };
 
-export const autosaverPlugin = store => {
+export const autoSaverPlugin = store => {
   let prevState = cloneDeep(store.state.resume);
 
   const updateOnApi = debounce(
@@ -122,7 +130,7 @@ export const autosaverPlugin = store => {
   );
 
   store.subscribe((mutation, { resume }) => {
-    if (mutation.type !== "setResume") {
+    if (mutation.type === "updateResume" || mutation.type === "editJob") {
       const prevResume = prevState;
       updateOnApi(resume, () => {
         console.error("Reverting resume to previous version");
@@ -133,19 +141,13 @@ export const autosaverPlugin = store => {
   });
 };
 
-export const plugins = [
-  store => {
-    store.subscribe((mutation, { resume }) => {
-      if (mutation.type !== "setResume") {
-        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(resume));
-      }
-    });
-  },
-
-  autosaverPlugin
-];
+export const plugins = [autoSaverPlugin];
 
 export default new Vuex.Store({
+  modules: {
+    user: UserModule
+  },
+
   state,
   plugins,
   mutations,

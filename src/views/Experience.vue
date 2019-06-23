@@ -4,7 +4,12 @@
       Add at least 3 jobs with 3 highlights each
     </template>
 
-    <draggable v-model="jobs" group="experience" animation="0" data-cy="experiences">
+    <draggable
+      v-model="jobs"
+      group="experience"
+      animation="0"
+      data-cy="experiences"
+    >
       <ExperienceItem
         :job="job"
         v-for="(job, index) in resume.jobs"
@@ -12,7 +17,6 @@
         class="cursor-move"
       />
     </draggable>
-
 
     <template #footer>
       <button class="btn items-center justify-center flex" @click="addJob">

@@ -1,16 +1,19 @@
 const REMOTE_STORAGE_KEY = "remote-key-resume-editor-vuejs-example";
 
 export default {
-  getResume(success) {
-    setTimeout(() => {
-      const response = JSON.parse(
-        window.localStorage.getItem(REMOTE_STORAGE_KEY) || "{}"
-      );
-      success(response);
-    }, 100);
+  async getCurrentUserDetails() {
+    return new Promise(resolve => setTimeout(resolve, 10)).then(
+      () => "Paul Keen User"
+    );
   },
 
-  updateResume(resume) {
+  async getResume() {
+    return new Promise(resolve => setTimeout(resolve, 10)).then(() =>
+      JSON.parse(window.localStorage.getItem(REMOTE_STORAGE_KEY) || "{}")
+    );
+  },
+
+  async updateResume(resume) {
     return new Promise(resolve => setTimeout(resolve, 100)).then(() => {
       window.localStorage.setItem(REMOTE_STORAGE_KEY, JSON.stringify(resume));
       // simulate API response parsing

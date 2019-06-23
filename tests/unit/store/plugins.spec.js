@@ -1,7 +1,7 @@
 import { testPlugin } from "../helpers/store";
 import api from "../../../src/api/hireclub-client.js";
 
-import { autosaverPlugin } from "@/store/";
+import { autoSaverPlugin } from "@/store/";
 
 jest.mock("../../../src/api/hireclub-client.js");
 
@@ -12,7 +12,7 @@ describe("plugins", () => {
     api.updateResume.mockReturnValue(Promise.resolve());
 
     testPlugin(
-      autosaverPlugin,
+      autoSaverPlugin,
       { resume: { firstName: "Old Name" } },
       [{ type: "updateResume", payload: { firstName: "New Name" } }],
       done
@@ -25,7 +25,7 @@ describe("plugins", () => {
     api.updateResume.mockReturnValue(Promise.reject("Server Error"));
 
     testPlugin(
-      autosaverPlugin,
+      autoSaverPlugin,
       { resume: { firstName: "Old Name" } },
       [
         { type: "updateResume", payload: { firstName: "New Name" } },
