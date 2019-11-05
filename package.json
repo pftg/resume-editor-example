@@ -8,8 +8,13 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "dist:staging": "vue-cli-service build && surge ./dist resume-editor-hc.surge.sh"
+    "dist:staging": "vue-cli-service build && surge ./dist resume-editor-hc.surge.sh",
+    "electron:build": "vue-cli-service electron:build",
+    "electron:serve": "vue-cli-service electron:serve",
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps"
   },
+  "main": "background.js",
   "dependencies": {
     "core-js": "^3.3.2",
     "moment": "^2.24.0",
@@ -34,6 +39,7 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.9.0",
     "dart-sass": "^1.23.3",
+    "electron": "^6.0.0",
     "eslint": "^6.6.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.0.0",
@@ -42,6 +48,7 @@
     "sass": "^1.18.0",
     "sass-loader": "^8.0.0",
     "tailwindcss": "^1.0.3",
+    "vue-cli-plugin-electron-builder": "^1.4.0",
     "vue-template-compiler": "^2.6.10"
   }
 }
