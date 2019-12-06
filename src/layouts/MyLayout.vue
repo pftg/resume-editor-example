@@ -35,15 +35,18 @@
     >
       <q-scroll-area class="fit">
         <q-list padding>
-          <q-option-group
-            v-model="tab"
-            :options="links"
-          />
+          <q-item v-for="link in links" :key="link.text" v-ripple clickable>
+            <q-item-section avatar>
+              <q-icon color="grey" :name="link.icon" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>{{ link.text }}</q-item-label>
+            </q-item-section>
+          </q-item>
 
           <q-separator class="q-mt-md q-mb-xs" />
 
         </q-list>
-
       </q-scroll-area>
     </q-drawer>
 
@@ -61,13 +64,12 @@ export default {
     return {
       leftDrawerOpen: false,
       links: [
-        { label: 'Photo', value: 'photo' },
-        { label: 'Name', value: 'name' },
-        { label: 'Subtitle', value: 'subtitle' },
-        { label: 'Email', value: 'email' },
-        { label: 'Experience', value: 'experience' }
-      ],
-      tab: 'name'
+        { icon: 'photo', text: 'Photo' },
+        { icon: 'edit', text: 'Name' },
+        { icon: 'title', text: 'Subtitle' },
+        { icon: 'email', text: 'Email' },
+        { icon: 'folder', text: 'Experience' }
+      ]
     }
   }
 }
