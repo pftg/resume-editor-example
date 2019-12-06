@@ -63,11 +63,11 @@ export default {
     return {
       leftDrawerOpen: false,
       links: [
-        { icon: 'home', text: 'Home' },
-        { icon: 'home', text: 'Name' },
-        { icon: 'home', text: 'Subtitle' },
-        { icon: 'home', text: 'Email' },
-        { icon: 'home', text: 'Experience' }
+        { icon: 'photo', text: 'Photo' },
+        { icon: 'edit', text: 'Name' },
+        { icon: 'title', text: 'Subtitle' },
+        { icon: 'email', text: 'Email' },
+        { icon: 'folder', text: 'Experience' }
       ]
     }
   }
