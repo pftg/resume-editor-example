@@ -3,14 +3,16 @@
     <div class="col-5 q-pa-md">
 
       <div class="q-pa-md q-mb-lg shadow-2 rounded-borders">
-        <div>
+        <div id="photo">
           <div class="text-weight-bold">Photo</div>
           <span>Upload your photo</span>
           <q-separator class="q-mt-md q-mb-md" />
-          <q-uploader />
+          <q-uploader
+            ref="uploader"
+          />
         </div>
 
-        <div>
+        <div id="name">
           <div class="text-weight-bold">Name</div>
           <span>Use your first and last name. No nicknames</span>
           <q-separator class="q-mt-md q-mb-md" />
@@ -32,7 +34,7 @@
           </q-form>
         </div>
 
-        <div>
+        <div id="subtitle">
           <div class="text-weight-bold">Subtitle</div>
           <span>Two words what you want to do</span>
           <q-separator class="q-mt-md q-mb-md" />
@@ -47,7 +49,7 @@
           </q-form>
         </div>
 
-        <div>
+        <div id="email">
           <div class="text-weight-bold">Email</div>
           <span>professional email</span>
           <q-separator class="q-mt-md q-mb-md" />
@@ -62,7 +64,7 @@
           </q-form>
         </div>
 
-        <div>
+        <div id="experience">
           <div class="text-weight-bold">Experience</div>
           <span>Add at least 3 jobs with 3 highlights each</span>
           <q-separator class="q-mt-md q-mb-md" />
@@ -93,7 +95,7 @@
       </div>
 
     </div>
-    <div class="col-7 q-pa-md">
+    <div class="col-5 q-pa-md">
       <div>
         <h4 class="q-my-sm text-h4">
           <span class="q-mr-sm">{{ firstName }}</span>
