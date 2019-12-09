@@ -62,7 +62,7 @@ export default {
   methods: {
     goto (value) {
       const elementPosition = document.getElementById(value).offsetTop
-      window.scrollTo(0, elementPosition)
+      window.scrollTo({ top: elementPosition, behavior: 'smooth' })
     }
   },
 
