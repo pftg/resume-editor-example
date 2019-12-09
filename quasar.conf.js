@@ -63,6 +63,8 @@ module.exports = function (ctx) {
       // preloadChunks: false,
       // extractCSS: false,
 
+      distDir: ctx.mode.spa ? 'public' : null,
+
       // https://quasar.dev/quasar-cli/cli-documentation/handling-webpack
       extendWebpack (cfg) {
         cfg.module.rules.push({
