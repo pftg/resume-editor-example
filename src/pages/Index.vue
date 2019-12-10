@@ -3,6 +3,7 @@
     <div class="col-5 q-pa-md">
 
       <div class="q-pa-md q-mb-lg shadow-2 rounded-borders">
+        <q-scroll-area class="scroll-area">
         <div id="photo">
           <div class="text-weight-bold">Photo</div>
           <span>Upload your photo</span>
@@ -92,6 +93,7 @@
             />
           </q-form>
         </div>
+      </q-scroll-area>
       </div>
 
     </div>
@@ -145,3 +147,8 @@ export default {
   }
 }
 </script>
+
+<style lang="sass">
+.scroll-area
+  height: calc(100vh - 150px)
+</style>

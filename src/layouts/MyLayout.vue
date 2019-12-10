@@ -61,8 +61,8 @@ export default {
   name: 'MyLayout',
   methods: {
     goto (value) {
-      const elementPosition = document.getElementById(value).offsetTop
-      window.scrollTo({ top: elementPosition, behavior: 'smooth' })
+      const element = document.getElementById(value)
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
   },
 
