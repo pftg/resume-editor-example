@@ -9,6 +9,7 @@
             <div class="text-h6">Photo</div>
             <span class="text-body2">Upload your photo</span>
             <q-separator class="q-mt-md q-mb-md" />
+
             <q-input
               @input="val => { file = val[0] }"
               filled
@@ -17,25 +18,33 @@
               @change="onFileSelected"
             />
           </div>
+
           <div id="name" class="q-mb-lg">
             <div class="text-h6">Name</div>
             <span class="text-body2">Use your first and last name. No nicknames</span>
             <q-separator class="q-mt-md q-mb-md" />
+
             <q-form class="q-gutter-sm overflow-hidden">
-              <q-input
-                filled
-                v-model="firstName"
-                hint="First Name"
-                lazy-rules
-                :rules="[ val => val && val.length > 0 || 'Please type something']"
-              />
-              <q-input
-                filled
-                v-model="lastName"
-                hint="Last Name"
-                lazy-rules
-                :rules="[ val => val && val.length > 0 || 'Please type something']"
-              />
+              <div class="row">
+                <div class="col-6 q-pr-xs">
+                  <q-input
+                    filled
+                    v-model="firstName"
+                    hint="First Name"
+                    lazy-rules
+                    :rules="[ val => val && val.length > 0 || 'Please type something']"
+                  />
+                </div>
+                <div class="col-6 q-pl-xs">
+                  <q-input
+                    filled
+                    v-model="lastName"
+                    hint="Last Name"
+                    lazy-rules
+                    :rules="[ val => val && val.length > 0 || 'Please type something']"
+                  />
+                </div>
+              </div>
             </q-form>
           </div>
 
@@ -43,6 +52,7 @@
             <div class="text-h6">Subtitle</div>
             <span class="text-body2">Two words what you want to do</span>
             <q-separator class="q-mt-md q-mb-md" />
+
             <q-form class="q-gutter-sm overflow-hidden">
               <q-input
                 filled
@@ -58,23 +68,30 @@
             <div class="text-h6">Contacts</div>
             <span class="text-body2">Add your phone number and email</span>
             <q-separator class="q-mt-md q-mb-md" />
+
             <q-form class="q-gutter-sm overflow-hidden">
-              <q-input
-                filled
-                v-model="phone"
-                hint="paul.keen@jetthoughts.com"
-                type="email"
-                lazy-rules
-                :rules="[ val => val && val.length > 0 || 'Please type something']"
-              />
-              <q-input
-                filled
-                v-model="email"
-                hint="paul.keen@jetthoughts.com"
-                type="email"
-                lazy-rules
-                :rules="[ val => val && val.length > 0 || 'Please type something']"
-              />
+              <div class="row">
+                <div class="col-6 q-pr-xs">
+                  <q-input
+                    filled
+                    v-model="phone"
+                    hint="paul.keen@jetthoughts.com"
+                    type="email"
+                    lazy-rules
+                    :rules="[ val => val && val.length > 0 || 'Please type something']"
+                  />
+                </div>
+                <div class="col-6 q-pl-xs">
+                  <q-input
+                    filled
+                    v-model="email"
+                    hint="paul.keen@jetthoughts.com"
+                    type="email"
+                    lazy-rules
+                    :rules="[ val => val && val.length > 0 || 'Please type something']"
+                  />
+                </div>
+              </div>
             </q-form>
           </div>
 
@@ -82,6 +99,7 @@
             <div class="text-h6">Experience</div>
             <span class="text-body2">Add at least 3 jobs with 3 highlights each</span>
             <q-separator class="q-mt-md q-mb-md" />
+
             <q-form class="q-gutter-sm overflow-hidden">
               <q-input
                 filled
@@ -97,16 +115,22 @@
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
               />
-              <q-input
-                v-model="startExpienceDate"
-                filled type="date"
-                hint="Start Date"
-              />
-              <q-input
-                v-model="endExpienceDate"
-                filled type="date"
-                hint="End Date"
-              />
+              <div class="row">
+                <div class="col-6 q-pr-xs">
+                  <q-input
+                    v-model="startExpienceDate"
+                    filled type="date"
+                    hint="Start Date"
+                  />
+                </div>
+                <div class="col-6 q-pl-xs">
+                  <q-input
+                    v-model="endExpienceDate"
+                    filled type="date"
+                    hint="End Date"
+                  />
+                </div>
+              </div>
               <q-input
                 filled
                 v-model="highlights"
