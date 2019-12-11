@@ -1,6 +1,6 @@
 <template>
   <q-page class="row">
-    <div class="col-5 q-pa-md">
+    <div class="col-lg-5 col-md-5 col-xs-12 q-pa-md">
 
       <div class="q-pa-md q-mb-lg shadow-2 rounded-borders">
         <q-scroll-area class="scroll-area">
@@ -154,7 +154,7 @@
       </div>
 
     </div>
-    <div class="col-5 q-pa-md">
+    <div class="col-lg-5 col-md-7 col-xs-12 q-pa-md">
       <q-scroll-area class="scroll-area">
 
         <div v-if="positionTitle || company || highlights" class="q-mb-xl overflow-hidden">
