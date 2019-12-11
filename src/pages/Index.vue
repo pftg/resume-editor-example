@@ -319,7 +319,7 @@
           </div>
         </div>
 
-        <div v-if="skills" class="q-mb-xl overflow-hidden">
+        <div v-if="skills.length" class="q-mb-xl overflow-hidden">
           <h6 class="text-h6 q-mt-none q-mb-xs">Skills:</h6>
           <q-separator class="q-mb-md q-pb-xs bg-secondary" />
 
@@ -332,7 +332,7 @@
           </div>
         </div>
 
-        <div v-if="languages" class="q-mb-xl overflow-hidden">
+        <div v-if="languages.length" class="q-mb-xl overflow-hidden">
           <h6 class="text-h6 q-mt-none q-mb-xs">Languages:</h6>
           <q-separator class="q-mb-md q-pb-xs bg-secondary" />
 
