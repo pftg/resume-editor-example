@@ -54,11 +54,19 @@
             </q-form>
           </div>
 
-          <div id="email" class="q-mb-lg">
-            <div class="text-h6">Email</div>
-            <span class="text-body2">professional email</span>
+          <div id="contacts" class="q-mb-lg">
+            <div class="text-h6">Contacts</div>
+            <span class="text-body2">Add your phone number and email</span>
             <q-separator class="q-mt-md q-mb-md" />
             <q-form class="q-gutter-sm overflow-hidden">
+              <q-input
+                filled
+                v-model="phone"
+                hint="paul.keen@jetthoughts.com"
+                type="email"
+                lazy-rules
+                :rules="[ val => val && val.length > 0 || 'Please type something']"
+              />
               <q-input
                 filled
                 v-model="email"
@@ -109,7 +117,7 @@
             </q-form>
           </div>
 
-          <div id="experience" class="q-mb-lg">
+          <div id="education" class="q-mb-lg">
             <div class="text-h6">Education</div>
             <span class="text-body2">List all your relevant education</span>
             <q-separator class="q-mt-md q-mb-md" />
@@ -150,6 +158,52 @@
             </q-form>
           </div>
 
+          <div id="skills" class="q-mb-lg">
+            <div class="text-h6">Skills</div>
+            <span class="text-body2">List both your hard and soft skills, putting the most relevant skills at the top of the list</span>
+            <q-separator class="q-mt-md q-mb-md" />
+            <q-form class="q-gutter-sm overflow-hidden">
+              <q-input
+                filled
+                v-model="skills"
+                hint="Skill (E.g. Design, Management, etc.)"
+                lazy-rules
+                :rules="[ val => val && val.length > 0 || 'Please type something']"
+              />
+            </q-form>
+          </div>
+
+          <div id="languages" class="q-mb-lg">
+            <div class="text-h6">Languages</div>
+            <span class="text-body2">List all the languages you know</span>
+            <q-separator class="q-mt-md q-mb-md" />
+            <q-form class="q-gutter-sm overflow-hidden">
+              <q-input
+                filled
+                v-model="languages"
+                hint="Language (E.g. English)"
+                lazy-rules
+                :rules="[ val => val && val.length > 0 || 'Please type something']"
+              />
+            </q-form>
+          </div>
+
+          <div id="summary" class="q-mb-lg">
+            <div class="text-h6">Summary</div>
+            <span class="text-body2">Write highlights about you</span>
+            <q-separator class="q-mt-md q-mb-md" />
+            <q-form class="q-gutter-sm overflow-hidden">
+              <q-input
+                filled
+                v-model="summary"
+                hint="Your Professional Summary"
+                type="textarea"
+                lazy-rules
+                :rules="[ val => val && val.length > 0 || 'Please type something']"
+              />
+            </q-form>
+          </div>
+
         </q-scroll-area>
       </div>
 
@@ -170,10 +224,14 @@
               <span class="q-mr-sm">{{ firstName }}</span>
               <span>{{ lastName }}</span>
             </h4>
-            <div class="text-subtitle1">{{ subtitle }}</div>
+            <div class="text-subtitle1 q-mb-sm">{{ subtitle }}</div>
             <div>
-              <span class="text-weight-bold text-subtitle1 q-mr-sm">Email:</span>
+              <span class="text-subtitle2 q-mr-sm">Email:</span>
               <span class="text-body2">{{ email }}</span>
+            </div>
+            <div>
+              <span class="text-subtitle2 q-mr-sm">Phone:</span>
+              <span class="text-body2">{{ phone }}</span>
             </div>
           </div>
         </div>
@@ -215,6 +273,39 @@
           </div>
         </div>
 
+        <div v-if="skills" class="q-mb-xl overflow-hidden">
+          <h6 class="text-h6 q-mt-none q-mb-xs">Skills:</h6>
+          <q-separator class="q-mb-md q-pb-xs bg-secondary" />
+
+          <div
+            v-for="skill in skills"
+            :key="skill"
+            class="text-body2"
+          >
+            {{ skill }}
+          </div>
+        </div>
+
+        <div v-if="languages" class="q-mb-xl overflow-hidden">
+          <h6 class="text-h6 q-mt-none q-mb-xs">Languages:</h6>
+          <q-separator class="q-mb-md q-pb-xs bg-secondary" />
+
+          <div
+            v-for="language in languages"
+            :key="language"
+            class="text-body2"
+          >
+            {{ language }}
+          </div>
+        </div>
+
+        <div v-if="summary" class="q-mb-xl overflow-hidden">
+          <h6 class="text-h6 q-mt-none q-mb-xs">Summary:</h6>
+          <q-separator class="q-mb-md q-pb-xs bg-secondary" />
+
+          <div class="text-body2">{{ summary }}</div>
+        </div>
+
       </q-scroll-area>
     </div>
   </q-page>
@@ -230,11 +321,12 @@ export default {
 
   data () {
     return {
-      imageSrc: '',
+      imageSrc: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrnX_qVdYQsabmxytonuE3S7NVN9CTmOmC9UWREIfQg1lpZ25Z&s',
       panel: 'name',
       firstName: 'John',
       lastName: 'Wayne',
       subtitle: 'React Developer',
+      phone: '+380501553318',
       email: 'john.wayne@email.com',
       positionTitle: 'Software engineer',
       company: 'Jetthoughts',
@@ -245,7 +337,10 @@ export default {
       degree: 'Magister',
       educationDate: '2011-12-21',
       fieldOfStudy: 'Computer science',
-      achievements: 'Academic achievement'
+      achievements: 'Academic achievement',
+      skills: ['CSS', 'HTML', 'JavaScript', 'React', 'React Native'],
+      languages: ['Spanish'],
+      summary: 'A resume summary statement is a short paragraph at the beginning of a resume that highlights a job seeker’s professional skills and experience. It gives hiring managers a glimpse into the job seeker’s expertise before diving into their resume. The goal of a summary statement is to demonstrate the job seeker’s unique value through their skills and accomplishments.'
     }
   }
 }

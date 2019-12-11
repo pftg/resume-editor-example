@@ -73,8 +73,12 @@ export default {
         { icon: 'photo', text: 'Photo', value: 'photo' },
         { icon: 'edit', text: 'Name', value: 'name' },
         { icon: 'title', text: 'Subtitle', value: 'subtitle' },
-        { icon: 'email', text: 'Email', value: 'email' },
-        { icon: 'folder', text: 'Experience', value: 'experience' }
+        { icon: 'contacts', text: 'Contacts', value: 'contacts' },
+        { icon: 'work', text: 'Experience', value: 'experience' },
+        { icon: 'school', text: 'Education', value: 'education' },
+        { icon: 'sports_football', text: 'Skills', value: 'skills' },
+        { icon: 'language', text: 'Languages', value: 'languages' },
+        { icon: 'cake', text: 'Summary', value: 'summary' }
       ]
     }
   }
