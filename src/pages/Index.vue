@@ -186,30 +186,52 @@
             <div class="text-h6">Skills</div>
             <span class="text-body2">List both your hard and soft skills, putting the most relevant skills at the top of the list</span>
             <q-separator class="q-mt-md q-mb-md" />
-            <q-form class="q-gutter-sm overflow-hidden">
-              <q-input
-                filled
-                v-model="skills"
-                hint="Skill (E.g. Design, Management, etc.)"
-                lazy-rules
-                :rules="[ val => val && val.length > 0 || 'Please type something']"
-              />
+
+            <q-form class="q-gutter-sm overflow-hidden q-mb-sm">
+              <q-input bottom-slots filled v-model="skill">
+                <template v-slot:hint>Skill (E.g. Design, Management, etc.)</template>
+                <template v-slot:append>
+                  <q-btn round dense flat icon="add" @click="skill && addSkill(skill)" />
+                </template>
+              </q-input>
             </q-form>
+
+            <span
+              v-for="skill in skills"
+              :key="skill"
+              class="text-body2 q-mr-xs"
+              @click="removeSkill(skill)"
+            >
+              {{ skill }}
+              <q-icon class="cursor-pointer" color="grey" :name="'close'" />
+            </span>
+
           </div>
 
           <div id="languages" class="q-mb-lg">
             <div class="text-h6">Languages</div>
             <span class="text-body2">List all the languages you know</span>
             <q-separator class="q-mt-md q-mb-md" />
-            <q-form class="q-gutter-sm overflow-hidden">
-              <q-input
-                filled
-                v-model="languages"
-                hint="Language (E.g. English)"
-                lazy-rules
-                :rules="[ val => val && val.length > 0 || 'Please type something']"
-              />
+
+            <q-form class="q-gutter-sm overflow-hidden q-mb-sm">
+              <q-input bottom-slots filled v-model="language">
+                <template v-slot:hint>Language (E.g. English)</template>
+                <template v-slot:append>
+                  <q-btn round dense flat icon="add" @click="language && addLanguage(language)" />
+                </template>
+              </q-input>
             </q-form>
+
+            <span
+              v-for="language in languages"
+              :key="language"
+              class="text-body2 q-mr-xs"
+              @click="removeLanguage(language)"
+            >
+              {{ language }}
+              <q-icon class="cursor-pointer" color="grey" :name="'close'" />
+            </span>
+
           </div>
 
           <div id="summary" class="q-mb-lg">
@@ -340,6 +362,22 @@ export default {
   methods: {
     onFileSelected (event) {
       this.$data.imageSrc = URL.createObjectURL(event.target.files[0])
+    },
+    addSkill (skill) {
+      this.$data.skills.push(skill)
+      this.$data.skill = ''
+    },
+    removeSkill (skill) {
+      this.$data.skills = this.$data.skills.filter(item => item !== skill)
+      this.$data.skill = ''
+    },
+    addLanguage (language) {
+      this.$data.languages.push(language)
+      this.$data.language = ''
+    },
+    removeLanguage (language) {
+      this.$data.languages = this.$data.languages.filter(item => item !== language)
+      this.$data.language = ''
     }
   },
 
@@ -362,7 +400,9 @@ export default {
       educationDate: '2011-12-21',
       fieldOfStudy: 'Computer science',
       achievements: 'Academic achievement',
+      skill: '',
       skills: ['CSS', 'HTML', 'JavaScript', 'React', 'React Native'],
+      language: '',
       languages: ['Spanish'],
       summary: 'A resume summary statement is a short paragraph at the beginning of a resume that highlights a job seeker’s professional skills and experience. It gives hiring managers a glimpse into the job seeker’s expertise before diving into their resume. The goal of a summary statement is to demonstrate the job seeker’s unique value through their skills and accomplishments.'
     }
