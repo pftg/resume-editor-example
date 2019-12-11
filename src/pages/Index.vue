@@ -5,64 +5,64 @@
       <div class="q-pa-md q-mb-lg shadow-2 rounded-borders">
         <q-scroll-area class="scroll-area">
 
-          <div id="photo" class="q-mb-md">
-            <div class="text-weight-bold">Photo</div>
-            <span>Upload your photo</span>
+          <div id="photo" class="q-mb-lg">
+            <div class="text-h6">Photo</div>
+            <span class="text-body2">Upload your photo</span>
             <q-separator class="q-mt-md q-mb-md" />
-            <label for="upload" class="cursor-pointer q-btn bg-primary text-white upload-button">Upload your photo</label>
-            <input
-              id="upload"
+            <q-input
+              @input="val => { file = val[0] }"
+              filled
               type="file"
-              class="hide-input"
+              hint="Your photo"
               @change="onFileSelected"
             />
           </div>
-          <div id="name" class="q-mb-md">
-            <div class="text-weight-bold">Name</div>
-            <span>Use your first and last name. No nicknames</span>
+          <div id="name" class="q-mb-lg">
+            <div class="text-h6">Name</div>
+            <span class="text-body2">Use your first and last name. No nicknames</span>
             <q-separator class="q-mt-md q-mb-md" />
-            <q-form class="overflow-hidden">
+            <q-form class="q-gutter-sm overflow-hidden">
               <q-input
                 filled
                 v-model="firstName"
-                label="First Name"
+                hint="First Name"
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
               />
               <q-input
                 filled
                 v-model="lastName"
-                label="Last Name"
+                hint="Last Name"
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
               />
             </q-form>
           </div>
 
-          <div id="subtitle" class="q-mb-md">
-            <div class="text-weight-bold">Subtitle</div>
-            <span>Two words what you want to do</span>
+          <div id="subtitle" class="q-mb-lg">
+            <div class="text-h6">Subtitle</div>
+            <span class="text-body2">Two words what you want to do</span>
             <q-separator class="q-mt-md q-mb-md" />
-            <q-form class="overflow-hidden">
+            <q-form class="q-gutter-sm overflow-hidden">
               <q-input
                 filled
                 v-model="subtitle"
-                label="Subtitle"
+                hint="Subtitle"
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
               />
             </q-form>
           </div>
 
-          <div id="email" class="q-mb-md">
-            <div class="text-weight-bold">Email</div>
-            <span>professional email</span>
+          <div id="email" class="q-mb-lg">
+            <div class="text-h6">Email</div>
+            <span class="text-body2">professional email</span>
             <q-separator class="q-mt-md q-mb-md" />
-            <q-form class="overflow-hidden">
+            <q-form class="q-gutter-sm overflow-hidden">
               <q-input
                 filled
                 v-model="email"
-                label="paul.keen@jetthoughts.com"
+                hint="paul.keen@jetthoughts.com"
                 type="email"
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
@@ -70,29 +70,80 @@
             </q-form>
           </div>
 
-          <div id="experience" class="q-mb-md">
-            <div class="text-weight-bold">Experience</div>
-            <span>Add at least 3 jobs with 3 highlights each</span>
+          <div id="experience" class="q-mb-lg">
+            <div class="text-h6">Experience</div>
+            <span class="text-body2">Add at least 3 jobs with 3 highlights each</span>
             <q-separator class="q-mt-md q-mb-md" />
-            <q-form class="overflow-hidden">
+            <q-form class="q-gutter-sm overflow-hidden">
               <q-input
                 filled
-                v-model="title"
-                label="Title"
+                v-model="company"
+                hint="Company or Project Name"
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
               />
               <q-input
                 filled
-                v-model="company"
-                label="Company"
+                v-model="positionTitle"
+                hint="Position Title"
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
+              />
+              <q-input
+                v-model="startExpienceDate"
+                filled type="date"
+                hint="Start Date"
+              />
+              <q-input
+                v-model="endExpienceDate"
+                filled type="date"
+                hint="End Date"
               />
               <q-input
                 filled
                 v-model="highlights"
-                label="New Highlights"
+                hint="New Highlights"
+                lazy-rules
+                :rules="[ val => val && val.length > 0 || 'Please type something']"
+              />
+            </q-form>
+          </div>
+
+          <div id="experience" class="q-mb-lg">
+            <div class="text-h6">Education</div>
+            <span class="text-body2">List all your relevant education</span>
+            <q-separator class="q-mt-md q-mb-md" />
+            <q-form class="q-gutter-sm overflow-hidden">
+              <q-input
+                filled
+                v-model="school"
+                hint="School"
+                lazy-rules
+                :rules="[ val => val && val.length > 0 || 'Please type something']"
+              />
+              <q-input
+                filled
+                v-model="degree"
+                hint="Degree"
+                lazy-rules
+                :rules="[ val => val && val.length > 0 || 'Please type something']"
+              />
+              <q-input
+                v-model="educationDate"
+                filled type="date"
+                hint="Graduation Date"
+              />
+              <q-input
+                filled
+                v-model="fieldOfStudy"
+                hint="Field of Study"
+                lazy-rules
+                :rules="[ val => val && val.length > 0 || 'Please type something']"
+              />
+              <q-input
+                filled
+                v-model="achievements"
+                hint="Achievements"
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
               />
@@ -106,7 +157,7 @@
     <div class="col-5 q-pa-md">
       <q-scroll-area class="scroll-area">
 
-        <div>
+        <div v-if="positionTitle || company || highlights" class="q-mb-xl overflow-hidden">
           <img
             class="float-left q-mr-md"
             width="200"
@@ -127,22 +178,41 @@
           </div>
         </div>
 
-        <div>
-          <q-separator class="q-mt-md q-mb-md" />
-          <h6 class="text-h6 q-mb-sm q-mt-none">Education:</h6>
-          <span class="text-subtitle1">{{ title }}</span>
-          <span class="text-subtitle1 q-mx-sm" v-if="company">at</span>
-          <span class="text-subtitle1">{{ company }}</span>
-          <div class="text-body2">{{ highlights }}</div>
+        <div v-if="positionTitle || company || highlights || startExpienceDate || endExpienceDate" class="q-mb-xl overflow-hidden">
+          <h6 class="text-h6 q-mt-none q-mb-xs">Experience:</h6>
+          <q-separator class="q-mb-md q-pb-xs bg-secondary" />
+
+          <div
+            class="text-subtitle1 text-grey-7 float-left q-mr-md"
+            style="min-width: 86px;"
+          >
+            {{ startExpienceDate.substring(0, 4) }} - {{ endExpienceDate.substring(0, 4) }}
+          </div>
+
+          <div class="overflow-hidden">
+            <div class="text-subtitle2">{{ positionTitle }}</div>
+            <div class="text-subtitle1 text-grey-7">{{ company }}</div>
+            <div class="text-body2">{{ highlights }}</div>
+          </div>
         </div>
 
-        <div>
-          <q-separator class="q-mt-md q-mb-md" />
-          <h6 class="text-h6 q-mb-sm q-mt-none">Experience:</h6>
-          <span class="text-subtitle1">{{ title }}</span>
-          <span class="text-subtitle1 q-mx-sm" v-if="company">at</span>
-          <span class="text-subtitle1">{{ company }}</span>
-          <div class="text-body2">{{ highlights }}</div>
+        <div v-if="school || degree || educationDate || fieldOfStudy || achievements" class="q-mb-xl overflow-hidden">
+          <h6 class="text-h6 q-mt-none q-mb-xs">Education:</h6>
+          <q-separator class="q-mb-md q-pb-xs bg-secondary" />
+
+          <div
+            class="text-subtitle1 text-grey-7 float-left q-mr-md"
+            style="min-width: 86px;"
+          >
+            {{ educationDate.substring(0, 4) }}
+          </div>
+
+          <div class="overflow-hidden">
+            <div class="text-subtitle2">{{ fieldOfStudy }}</div>
+            <div class="text-subtitle1 text-grey-7">{{ school }}</div>
+            <div class="text-body2">{{ degree }}</div>
+            <div class="text-body2">{{ achievements }}</div>
+          </div>
         </div>
 
       </q-scroll-area>
@@ -166,9 +236,16 @@ export default {
       lastName: 'Wayne',
       subtitle: 'React Developer',
       email: 'john.wayne@email.com',
-      title: 'Software engineer',
+      positionTitle: 'Software engineer',
       company: 'Jetthoughts',
-      highlights: 'In order to write an engaging, results-driven resume, you should state not only what you did, but what you achieved by what you did, framing it in terms of numbers.'
+      startExpienceDate: '2015-01-15',
+      endExpienceDate: '2019-05-01',
+      highlights: 'In order to write an engaging, results-driven resume, you should state not only what you did, but what you achieved by what you did, framing it in terms of numbers.',
+      school: 'Lvivska Polinehnika',
+      degree: 'Magister',
+      educationDate: '2011-12-21',
+      fieldOfStudy: 'Computer science',
+      achievements: 'Academic achievement'
     }
   }
 }
@@ -177,11 +254,4 @@ export default {
 <style lang="sass">
 .scroll-area
   height: calc(100vh - 145px)
-.upload-button
-  padding: 10px 16px
-  border-radius: 3px
-.hide-input
-  position: absolute
-  opacity: 0
-  left: -9999px
 </style>
