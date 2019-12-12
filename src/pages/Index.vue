@@ -130,13 +130,21 @@
                   />
                 </div>
               </div>
+
               <q-input
+                bottom-slots
                 filled
                 v-model="highlights"
                 hint="New Highlights"
                 lazy-rules
-                :rules="[ val => val && val.length > 0 || 'Please type something']"
-              />
+                type="textarea"
+              >
+                <template v-slot:hint>Skill (E.g. Design, Management, etc.)</template>
+                <template v-slot:append>
+                  <q-btn round dense flat icon="add" @click="highlights && addSkill(skill)" />
+                </template>
+              </q-input>
+
             </q-form>
             <q-btn color="white" text-color="black" label="Add Experience" />
           </div>
@@ -287,7 +295,7 @@
             <h6 class="text-h6 q-mt-none q-mb-xs">Experience:</h6>
             <q-separator class="q-mb-md q-pb-xs bg-secondary" />
 
-            <div class="overflow-hidden q-mb-lg" v-for="experience in experiences" :key="experience">
+            <div class="overflow-hidden q-mb-md" v-for="experience in experiences" :key="experience">
               <div
                 class="text-subtitle1 text-grey-7 float-left q-mr-md"
                 style="min-width: 86px;"
@@ -298,7 +306,7 @@
               <div class="overflow-hidden">
                 <div class="text-subtitle2">{{ experience.positionTitle }}</div>
                 <div class="text-subtitle1 text-grey-7">{{ experience.company }}</div>
-                <div class="text-body2">{{ experience.highlights }}</div>
+                <div class="text-body2 q-mb-md" v-for="highlight in experience.highlights" :key="highlight">{{ highlight }}</div>
               </div>
             </div>
           </div>
@@ -402,14 +410,14 @@ export default {
           company: 'Jetthoughts',
           startExpienceDate: '2015-01-15',
           endExpienceDate: '2019-05-01',
-          highlights: 'In order to write an engaging, results-driven resume, you should state not only what you did, but what you achieved by what you did, framing it in terms of numbers.'
+          highlights: ['In order to write an engaging, results-driven resume, you should state not only what you did, but what you achieved by what you did, framing it in terms of numbers.', 'In order to write an engaging, results-driven resume, you should state not only what you did, but what you achieved by what you did, framing it in terms of numbers.']
         },
         {
           positionTitle: 'Software engineer',
           company: 'Jetthoughts',
           startExpienceDate: '2018-01-15',
           endExpienceDate: '2020-05-01',
-          highlights: 'In order to write an engaging, results-driven resume, you should state not only what you did, but what you achieved by what you did, framing it in terms of numbers.'
+          highlights: ['In order to write an engaging, results-driven resume, you should state not only what you did, but what you achieved by what you did, framing it in terms of numbers.']
         }
       ],
       educations: [
