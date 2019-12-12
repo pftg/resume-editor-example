@@ -1,6 +1,6 @@
 <template>
   <q-page class="row">
-    <div class="col-lg-5 col-md-5 col-xs-12 q-pa-md">
+    <div class="col-md-5 col-xs-12 q-pa-md">
 
       <div class="q-pa-md q-mb-lg shadow-2 rounded-borders">
         <q-scroll-area class="scroll-area">
@@ -257,110 +257,112 @@
       </div>
 
     </div>
-    <div class="col-lg-5 col-md-7 col-xs-12 q-pa-md">
-      <q-scroll-area class="scroll-area">
+    <div class="col-md-7 col-xs-12 q-pa-md">
+      <div style="max-width: 670px; margin: 0 auto;">
+        <q-scroll-area class="scroll-area">
 
-        <div v-if="positionTitle || company || highlights" class="q-mb-xl overflow-hidden">
-          <img
-            class="float-left q-mr-md"
-            width="200"
-            v-if="imageSrc"
-            :src="imageSrc"
-            alt="Avatar"
-          />
-          <div class="overflow-hidden">
-            <h4 class="q-my-sm text-h4">
-              <span class="q-mr-sm">{{ firstName }}</span>
-              <span>{{ lastName }}</span>
-            </h4>
-            <div class="text-subtitle1 q-mb-sm">{{ subtitle }}</div>
-            <div>
-              <span class="text-subtitle2 q-mr-sm">Email:</span>
-              <span class="text-body2">{{ email }}</span>
-            </div>
-            <div>
-              <span class="text-subtitle2 q-mr-sm">Phone:</span>
-              <span class="text-body2">{{ phone }}</span>
-            </div>
-          </div>
-        </div>
-
-        <div v-if="experiences.length" class="q-mb-lg">
-          <h6 class="text-h6 q-mt-none q-mb-xs">Experience:</h6>
-          <q-separator class="q-mb-md q-pb-xs bg-secondary" />
-
-          <div class="overflow-hidden q-mb-lg" v-for="experience in experiences" :key="experience">
-            <div
-              class="text-subtitle1 text-grey-7 float-left q-mr-md"
-              style="min-width: 86px;"
-            >
-              {{ experience.startExpienceDate.substring(0, 4) }} - {{ experience.endExpienceDate.substring(0, 4) }}
-            </div>
-
+          <div v-if="positionTitle || company || highlights" class="q-mb-xl overflow-hidden">
+            <img
+              class="float-left q-mr-md"
+              width="200"
+              v-if="imageSrc"
+              :src="imageSrc"
+              alt="Avatar"
+            />
             <div class="overflow-hidden">
-              <div class="text-subtitle2">{{ experience.positionTitle }}</div>
-              <div class="text-subtitle1 text-grey-7">{{ experience.company }}</div>
-              <div class="text-body2">{{ experience.highlights }}</div>
+              <h4 class="q-my-sm text-h4">
+                <span class="q-mr-sm">{{ firstName }}</span>
+                <span>{{ lastName }}</span>
+              </h4>
+              <div class="text-subtitle1 q-mb-sm">{{ subtitle }}</div>
+              <div>
+                <span class="text-subtitle2 q-mr-sm">Email:</span>
+                <span class="text-body2">{{ email }}</span>
+              </div>
+              <div>
+                <span class="text-subtitle2 q-mr-sm">Phone:</span>
+                <span class="text-body2">{{ phone }}</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div v-if="educations.length" class="q-mb-lg">
-          <h6 class="text-h6 q-mt-none q-mb-xs">Education:</h6>
-          <q-separator class="q-mb-md q-pb-xs bg-secondary" />
+          <div v-if="experiences.length" class="q-mb-lg">
+            <h6 class="text-h6 q-mt-none q-mb-xs">Experience:</h6>
+            <q-separator class="q-mb-md q-pb-xs bg-secondary" />
 
-          <div class="overflow-hidden q-mb-lg" v-for="education in educations" :key="education">
+            <div class="overflow-hidden q-mb-lg" v-for="experience in experiences" :key="experience">
+              <div
+                class="text-subtitle1 text-grey-7 float-left q-mr-md"
+                style="min-width: 86px;"
+              >
+                {{ experience.startExpienceDate.substring(0, 4) }} - {{ experience.endExpienceDate.substring(0, 4) }}
+              </div>
+
+              <div class="overflow-hidden">
+                <div class="text-subtitle2">{{ experience.positionTitle }}</div>
+                <div class="text-subtitle1 text-grey-7">{{ experience.company }}</div>
+                <div class="text-body2">{{ experience.highlights }}</div>
+              </div>
+            </div>
+          </div>
+
+          <div v-if="educations.length" class="q-mb-lg">
+            <h6 class="text-h6 q-mt-none q-mb-xs">Education:</h6>
+            <q-separator class="q-mb-md q-pb-xs bg-secondary" />
+
+            <div class="overflow-hidden q-mb-lg" v-for="education in educations" :key="education">
+              <div
+                class="text-subtitle1 text-grey-7 float-left q-mr-md"
+                style="min-width: 86px;"
+              >
+                {{ education.educationDate.substring(0, 4) }}
+              </div>
+
+              <div class="overflow-hidden">
+                <div class="text-subtitle2">{{ education.fieldOfStudy }}</div>
+                <div class="text-subtitle1 text-grey-7">{{ education.school }}</div>
+                <div class="text-body2">{{ education.degree }}</div>
+                <div class="text-body2">{{ education.achievements }}</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div v-if="skills.length" class="q-mb-xl overflow-hidden">
+            <h6 class="text-h6 q-mt-none q-mb-xs">Skills:</h6>
+            <q-separator class="q-mb-md q-pb-xs bg-secondary" />
+
             <div
-              class="text-subtitle1 text-grey-7 float-left q-mr-md"
-              style="min-width: 86px;"
+              v-for="skill in skills"
+              :key="skill"
+              class="text-body2"
             >
-              {{ education.educationDate.substring(0, 4) }}
-            </div>
-
-            <div class="overflow-hidden">
-              <div class="text-subtitle2">{{ education.fieldOfStudy }}</div>
-              <div class="text-subtitle1 text-grey-7">{{ education.school }}</div>
-              <div class="text-body2">{{ education.degree }}</div>
-              <div class="text-body2">{{ education.achievements }}</div>
+              {{ skill }}
             </div>
           </div>
 
-        </div>
+          <div v-if="languages.length" class="q-mb-xl overflow-hidden">
+            <h6 class="text-h6 q-mt-none q-mb-xs">Languages:</h6>
+            <q-separator class="q-mb-md q-pb-xs bg-secondary" />
 
-        <div v-if="skills.length" class="q-mb-xl overflow-hidden">
-          <h6 class="text-h6 q-mt-none q-mb-xs">Skills:</h6>
-          <q-separator class="q-mb-md q-pb-xs bg-secondary" />
-
-          <div
-            v-for="skill in skills"
-            :key="skill"
-            class="text-body2"
-          >
-            {{ skill }}
+            <div
+              v-for="language in languages"
+              :key="language"
+              class="text-body2"
+            >
+              {{ language }}
+            </div>
           </div>
-        </div>
 
-        <div v-if="languages.length" class="q-mb-xl overflow-hidden">
-          <h6 class="text-h6 q-mt-none q-mb-xs">Languages:</h6>
-          <q-separator class="q-mb-md q-pb-xs bg-secondary" />
+          <div v-if="summary" class="q-mb-xl overflow-hidden">
+            <h6 class="text-h6 q-mt-none q-mb-xs">Summary:</h6>
+            <q-separator class="q-mb-md q-pb-xs bg-secondary" />
 
-          <div
-            v-for="language in languages"
-            :key="language"
-            class="text-body2"
-          >
-            {{ language }}
+            <div class="text-body2">{{ summary }}</div>
           </div>
-        </div>
 
-        <div v-if="summary" class="q-mb-xl overflow-hidden">
-          <h6 class="text-h6 q-mt-none q-mb-xs">Summary:</h6>
-          <q-separator class="q-mb-md q-pb-xs bg-secondary" />
-
-          <div class="text-body2">{{ summary }}</div>
-        </div>
-
-      </q-scroll-area>
+        </q-scroll-area>
+      </div>
     </div>
   </q-page>
 </template>
