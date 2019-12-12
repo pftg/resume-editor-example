@@ -2,8 +2,7 @@
   <q-page class="row">
     <div class="col-md-5 col-xs-12 q-pa-md">
 
-      <div class="q-pa-md q-mb-lg shadow-2 rounded-borders">
-        <q-scroll-area class="scroll-area">
+      <div class="q-pa-md q-mb-lg shadow-2 rounded-borders scroll-area overflow-y-auto">
 
           <div id="photo" class="q-mb-lg">
             <div class="text-h6">Photo</div>
@@ -253,13 +252,11 @@
             </q-form>
           </div>
 
-        </q-scroll-area>
       </div>
 
     </div>
     <div class="col-md-7 col-xs-12 q-pa-md">
-      <div style="max-width: 670px; margin: 0 auto;">
-        <q-scroll-area class="scroll-area">
+      <div style="max-width: 670px; margin: 0 auto;" class="overflow-y-auto scroll-area">
 
           <div v-if="firstName || lastName || subtitle || phone || email" class="q-mb-xl overflow-hidden">
             <img
@@ -361,7 +358,6 @@
             <div class="text-body2">{{ summary }}</div>
           </div>
 
-        </q-scroll-area>
       </div>
     </div>
   </q-page>
@@ -444,5 +440,9 @@ export default {
 
 <style lang="sass">
 .scroll-area
-  height: calc(100vh - 150px)
+  height: calc(100vh - 120px)
+  @media (max-width: $breakpoint-md-max)
+    height: auto
+.overflow-y-auto
+  overflow-y: auto
 </style>
