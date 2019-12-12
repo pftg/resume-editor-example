@@ -99,17 +99,19 @@
             <span class="text-body2">Add at least 3 jobs with 3 highlights each</span>
             <q-separator class="q-mt-md q-mb-md" />
 
-            <q-form class="q-gutter-sm overflow-hidden q-mb-md">
+            <q-form class="q-gutter-sm overflow-hidden q-mb-md" v-for="index in experiences.length" :key="index">
+              <span class="text-overline">Experience {{ index }}</span>
+              <span><q-icon class="cursor-pointer text-h6" color="grey" :name="'remove_circle_outline'" @click="removeExperience(index)" /></span>
               <q-input
                 filled
-                v-model="company"
+                v-model="experiences[index - 1].company"
                 hint="Company or Project Name"
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
               />
               <q-input
                 filled
-                v-model="positionTitle"
+                v-model="experiences[index - 1].positionTitle"
                 hint="Position Title"
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
@@ -117,14 +119,14 @@
               <div class="row">
                 <div class="col-6 q-pr-xs">
                   <q-input
-                    v-model="startExpienceDate"
+                    v-model="experiences[index - 1].startExpienceDate"
                     filled type="date"
                     hint="Start Date"
                   />
                 </div>
                 <div class="col-6 q-pl-xs">
                   <q-input
-                    v-model="endExpienceDate"
+                    v-model="experiences[index - 1].endExpienceDate"
                     filled type="date"
                     hint="End Date"
                   />
@@ -134,19 +136,29 @@
               <q-input
                 bottom-slots
                 filled
-                v-model="highlights"
+                v-model="experiences[index - 1].highlight"
                 hint="New Highlights"
                 lazy-rules
                 type="textarea"
               >
                 <template v-slot:hint>Skill (E.g. Design, Management, etc.)</template>
                 <template v-slot:append>
-                  <q-btn round dense flat icon="add" @click="highlights && addSkill(skill)" />
+                  <q-btn round dense flat icon="add" @click="experiences[index - 1].highlight && addHighlights(experiences[index - 1].highlight, index)" />
                 </template>
               </q-input>
 
+              <div
+                v-for="highlight in experiences[index - 1].highlights"
+                :key="highlight"
+                class="text-body2 q-mr-xs"
+                @click="removeHighlights(highlight, index)"
+              >
+                {{ highlight }}
+                <q-icon class="cursor-pointer" color="grey" :name="'close'" />
+              </div>
+
             </q-form>
-            <q-btn color="white" text-color="black" label="Add Experience" />
+            <q-btn color="white" text-color="black" label="Add Experience" @click="addExperience" />
           </div>
 
           <div id="education" class="q-mb-lg">
@@ -154,42 +166,44 @@
             <span class="text-body2">List all your relevant education</span>
             <q-separator class="q-mt-md q-mb-md" />
 
-            <q-form class="q-gutter-sm overflow-hidden q-mb-md">
+            <q-form class="q-gutter-sm overflow-hidden q-mb-md" v-for="index in educations.length" :key="index">
+              <span class="text-overline">Education {{ index }}</span>
+              <span><q-icon class="cursor-pointer text-h6" color="grey" :name="'remove_circle_outline'" @click="removeEducation(index)" /></span>
               <q-input
                 filled
-                v-model="school"
+                v-model="educations[index - 1].school"
                 hint="School"
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
               />
               <q-input
                 filled
-                v-model="degree"
+                v-model="educations[index - 1].degree"
                 hint="Degree"
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
               />
               <q-input
-                v-model="educationDate"
+                v-model="educations[index - 1].educationDate"
                 filled type="date"
                 hint="Graduation Date"
               />
               <q-input
                 filled
-                v-model="fieldOfStudy"
+                v-model="educations[index - 1].fieldOfStudy"
                 hint="Field of Study"
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
               />
               <q-input
                 filled
-                v-model="achievements"
+                v-model="educations[index - 1].achievements"
                 hint="Achievements"
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
               />
             </q-form>
-            <q-btn color="white" text-color="black" label="Add Education" />
+            <q-btn color="white" text-color="black" label="Add Education" @click="addEducation" />
           </div>
 
           <div id="skills" class="q-mb-lg">
@@ -295,7 +309,7 @@
             <h6 class="text-h6 q-mt-none q-mb-xs">Experience:</h6>
             <q-separator class="q-mb-md q-pb-xs bg-secondary" />
 
-            <div class="overflow-hidden q-mb-md" v-for="experience in experiences" :key="experience">
+            <div class="overflow-hidden q-mb-lg" v-for="experience in experiences" :key="experience">
               <div
                 class="text-subtitle1 text-grey-7 float-left q-mr-md"
                 style="min-width: 86px;"
@@ -306,7 +320,7 @@
               <div class="overflow-hidden">
                 <div class="text-subtitle2">{{ experience.positionTitle }}</div>
                 <div class="text-subtitle1 text-grey-7">{{ experience.company }}</div>
-                <div class="text-body2 q-mb-md" v-for="highlight in experience.highlights" :key="highlight">{{ highlight }}</div>
+                <div class="text-body2 q-mt-md" v-for="highlight in experience.highlights" :key="highlight">{{ highlight }}</div>
               </div>
             </div>
           </div>
@@ -383,7 +397,6 @@ export default {
     },
     removeSkill (skill) {
       this.$data.skills = this.$data.skills.filter(item => item !== skill)
-      this.$data.skill = ''
     },
     addLanguage (language) {
       this.$data.languages.push(language)
@@ -391,7 +404,25 @@ export default {
     },
     removeLanguage (language) {
       this.$data.languages = this.$data.languages.filter(item => item !== language)
-      this.$data.language = ''
+    },
+    addHighlights (highlight, index) {
+      this.$data.experiences[index - 1].highlights.push(highlight)
+      this.$data.experiences[index - 1].highlight = ''
+    },
+    removeHighlights (highlight, index) {
+      this.$data.experiences[index - 1].highlights = this.$data.experiences[index - 1].highlights.filter(item => item !== highlight)
+    },
+    addExperience () {
+      this.$data.experiences.push({ positionTitle: '', company: '', startExpienceDate: '', endExpienceDate: '', highlight: '', highlights: [] })
+    },
+    removeExperience (index) {
+      this.$data.experiences = this.$data.experiences.splice(index - 1, 1)
+    },
+    addEducation () {
+      this.$data.educations.push({ school: '', degree: '', educationDate: '', fieldOfStudy: '', achievements: '' })
+    },
+    removeEducation (index) {
+      this.$data.educations = this.$data.educations.splice(index - 1, 1)
     }
   },
 
@@ -410,13 +441,15 @@ export default {
           company: 'Jetthoughts',
           startExpienceDate: '2015-01-15',
           endExpienceDate: '2019-05-01',
-          highlights: ['In order to write an engaging, results-driven resume, you should state not only what you did, but what you achieved by what you did, framing it in terms of numbers.', 'In order to write an engaging, results-driven resume, you should state not only what you did, but what you achieved by what you did, framing it in terms of numbers.']
+          highlight: '',
+          highlights: ['In order to write an engaging, results-driven resume, you should state not only what you did, but what you achieved by what you did, framing it in terms of numbers.', 'In order to write an engaging, results-driven resume, you should state not only what you did, but what you achieved by what you did framing it in terms of numbers.']
         },
         {
           positionTitle: 'Software engineer',
           company: 'Jetthoughts',
           startExpienceDate: '2018-01-15',
           endExpienceDate: '2020-05-01',
+          highlight: '',
           highlights: ['In order to write an engaging, results-driven resume, you should state not only what you did, but what you achieved by what you did, framing it in terms of numbers.']
         }
       ],
