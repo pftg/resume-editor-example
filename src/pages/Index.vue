@@ -261,7 +261,7 @@
       <div style="max-width: 670px; margin: 0 auto;">
         <q-scroll-area class="scroll-area">
 
-          <div v-if="positionTitle || company || highlights" class="q-mb-xl overflow-hidden">
+          <div v-if="firstName || lastName || subtitle || phone || email" class="q-mb-xl overflow-hidden">
             <img
               class="float-left q-mr-md"
               width="200"
@@ -444,5 +444,5 @@ export default {
 
 <style lang="sass">
 .scroll-area
-  height: calc(100vh - 145px)
+  height: calc(100vh - 150px)
 </style>
