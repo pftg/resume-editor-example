@@ -255,7 +255,7 @@
       </div>
 
     </div>
-    <div class="col-md-7 col-xs-12 q-pa-md">
+    <div class="col-md-7 col-sm-12 q-pa-md">
       <div style="max-width: 670px; margin: 0 auto;" class="overflow-y-auto scroll-area">
 
           <div v-if="firstName || lastName || subtitle || phone || email" class="q-mb-xl overflow-hidden">
@@ -441,7 +441,7 @@ export default {
 <style lang="sass">
 .scroll-area
   height: calc(100vh - 120px)
-  @media (max-width: $breakpoint-md-max)
+  @media (max-width: $breakpoint-sm-max)
     height: auto
 .overflow-y-auto
   overflow-y: auto
