@@ -100,7 +100,7 @@
             <span class="text-body2">Add at least 3 jobs with 3 highlights each</span>
             <q-separator class="q-mt-md q-mb-md" />
 
-            <q-form class="q-gutter-sm overflow-hidden">
+            <q-form class="q-gutter-sm overflow-hidden q-mb-md">
               <q-input
                 filled
                 v-model="company"
@@ -139,13 +139,15 @@
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
               />
             </q-form>
+            <q-btn color="white" text-color="black" label="Add Experience" />
           </div>
 
           <div id="education" class="q-mb-lg">
             <div class="text-h6">Education</div>
             <span class="text-body2">List all your relevant education</span>
             <q-separator class="q-mt-md q-mb-md" />
-            <q-form class="q-gutter-sm overflow-hidden">
+
+            <q-form class="q-gutter-sm overflow-hidden q-mb-md">
               <q-input
                 filled
                 v-model="school"
@@ -180,6 +182,7 @@
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
               />
             </q-form>
+            <q-btn color="white" text-color="black" label="Add Education" />
           </div>
 
           <div id="skills" class="q-mb-lg">
@@ -282,41 +285,46 @@
           </div>
         </div>
 
-        <div v-if="positionTitle || company || highlights || startExpienceDate || endExpienceDate" class="q-mb-xl overflow-hidden">
+        <div v-if="experiences.length" class="q-mb-lg">
           <h6 class="text-h6 q-mt-none q-mb-xs">Experience:</h6>
           <q-separator class="q-mb-md q-pb-xs bg-secondary" />
 
-          <div
-            class="text-subtitle1 text-grey-7 float-left q-mr-md"
-            style="min-width: 86px;"
-          >
-            {{ startExpienceDate.substring(0, 4) }} - {{ endExpienceDate.substring(0, 4) }}
-          </div>
+          <div class="overflow-hidden q-mb-lg" v-for="experience in experiences" :key="experience">
+            <div
+              class="text-subtitle1 text-grey-7 float-left q-mr-md"
+              style="min-width: 86px;"
+            >
+              {{ experience.startExpienceDate.substring(0, 4) }} - {{ experience.endExpienceDate.substring(0, 4) }}
+            </div>
 
-          <div class="overflow-hidden">
-            <div class="text-subtitle2">{{ positionTitle }}</div>
-            <div class="text-subtitle1 text-grey-7">{{ company }}</div>
-            <div class="text-body2">{{ highlights }}</div>
+            <div class="overflow-hidden">
+              <div class="text-subtitle2">{{ experience.positionTitle }}</div>
+              <div class="text-subtitle1 text-grey-7">{{ experience.company }}</div>
+              <div class="text-body2">{{ experience.highlights }}</div>
+            </div>
           </div>
         </div>
 
-        <div v-if="school || degree || educationDate || fieldOfStudy || achievements" class="q-mb-xl overflow-hidden">
+        <div v-if="educations.length" class="q-mb-lg">
           <h6 class="text-h6 q-mt-none q-mb-xs">Education:</h6>
           <q-separator class="q-mb-md q-pb-xs bg-secondary" />
 
-          <div
-            class="text-subtitle1 text-grey-7 float-left q-mr-md"
-            style="min-width: 86px;"
-          >
-            {{ educationDate.substring(0, 4) }}
+          <div class="overflow-hidden q-mb-lg" v-for="education in educations" :key="education">
+            <div
+              class="text-subtitle1 text-grey-7 float-left q-mr-md"
+              style="min-width: 86px;"
+            >
+              {{ education.educationDate.substring(0, 4) }}
+            </div>
+
+            <div class="overflow-hidden">
+              <div class="text-subtitle2">{{ education.fieldOfStudy }}</div>
+              <div class="text-subtitle1 text-grey-7">{{ education.school }}</div>
+              <div class="text-body2">{{ education.degree }}</div>
+              <div class="text-body2">{{ education.achievements }}</div>
+            </div>
           </div>
 
-          <div class="overflow-hidden">
-            <div class="text-subtitle2">{{ fieldOfStudy }}</div>
-            <div class="text-subtitle1 text-grey-7">{{ school }}</div>
-            <div class="text-body2">{{ degree }}</div>
-            <div class="text-body2">{{ achievements }}</div>
-          </div>
         </div>
 
         <div v-if="skills.length" class="q-mb-xl overflow-hidden">
@@ -390,16 +398,38 @@ export default {
       subtitle: 'React Developer',
       phone: '+380501553318',
       email: 'john.wayne@email.com',
-      positionTitle: 'Software engineer',
-      company: 'Jetthoughts',
-      startExpienceDate: '2015-01-15',
-      endExpienceDate: '2019-05-01',
-      highlights: 'In order to write an engaging, results-driven resume, you should state not only what you did, but what you achieved by what you did, framing it in terms of numbers.',
-      school: 'Lvivska Polinehnika',
-      degree: 'Magister',
-      educationDate: '2011-12-21',
-      fieldOfStudy: 'Computer science',
-      achievements: 'Academic achievement',
+      experiences: [
+        {
+          positionTitle: 'Software engineer',
+          company: 'Jetthoughts',
+          startExpienceDate: '2015-01-15',
+          endExpienceDate: '2019-05-01',
+          highlights: 'In order to write an engaging, results-driven resume, you should state not only what you did, but what you achieved by what you did, framing it in terms of numbers.'
+        },
+        {
+          positionTitle: 'Software engineer',
+          company: 'Jetthoughts',
+          startExpienceDate: '2018-01-15',
+          endExpienceDate: '2020-05-01',
+          highlights: 'In order to write an engaging, results-driven resume, you should state not only what you did, but what you achieved by what you did, framing it in terms of numbers.'
+        }
+      ],
+      educations: [
+        {
+          school: 'Lvivska Polinehnika',
+          degree: 'Magister',
+          educationDate: '2011-12-21',
+          fieldOfStudy: 'Computer science',
+          achievements: 'Academic achievement'
+        },
+        {
+          school: 'Lvivska Polinehnika',
+          degree: 'Magister',
+          educationDate: '2005-12-21',
+          fieldOfStudy: 'Computer science',
+          achievements: 'Academic achievement'
+        }
+      ],
       skill: '',
       skills: ['CSS', 'HTML', 'JavaScript', 'React', 'React Native'],
       language: '',
