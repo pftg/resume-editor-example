@@ -93,7 +93,7 @@
             <span class="text-body2">Add at least 3 jobs with 3 highlights each</span>
             <q-separator class="q-mt-md q-mb-md" />
 
-            <q-form class="q-gutter-sm overflow-hidden q-mb-md" v-for="index in experiences.length" :key="index">
+            <q-form class="q-gutter-sm q-mb-md" v-for="index in experiences.length" :key="index">
               <span class="text-overline">Experience {{ index }}</span>
               <span><q-icon class="cursor-pointer text-h6" color="grey" :name="'remove_circle_outline'" @click="removeExperience(index)" /></span>
               <q-input
@@ -134,10 +134,18 @@
                 hint="New Highlights"
                 lazy-rules
                 type="textarea"
+                style="height: 95px;"
               >
                 <template v-slot:hint>Skill (E.g. Design, Management, etc.)</template>
                 <template v-slot:append>
-                  <q-btn round dense flat icon="add" @click="experiences[index - 1].highlight && addHighlights(experiences[index - 1].highlight, index)" />
+                  <q-btn
+                    round
+                    dense
+                    icon="add"
+                    class="bg-white"
+                    style="top: 47px; right: -28px; z-index: 9"
+                    @click="experiences[index - 1].highlight && addHighlights(experiences[index - 1].highlight, index)"
+                  />
                 </template>
               </q-input>
 
@@ -205,11 +213,18 @@
             <span class="text-body2">List both your hard and soft skills, putting the most relevant skills at the top of the list</span>
             <q-separator class="q-mt-md q-mb-md" />
 
-            <q-form class="q-gutter-sm overflow-hidden q-mb-sm">
+            <q-form class="q-gutter-sm q-mb-sm">
               <q-input bottom-slots filled v-model="skill">
                 <template v-slot:hint>Skill (E.g. Design, Management, etc.)</template>
                 <template v-slot:append>
-                  <q-btn round dense flat icon="add" @click="skill && addSkill(skill)" />
+                  <q-btn
+                    round
+                    dense
+                    icon="add"
+                    @click="skill && addSkill(skill)"
+                    class="bg-white"
+                    style="top: 28px; right: -28px; z-index: 9"
+                  />
                 </template>
               </q-input>
             </q-form>
@@ -231,11 +246,18 @@
             <span class="text-body2">List all the languages you know</span>
             <q-separator class="q-mt-md q-mb-md" />
 
-            <q-form class="q-gutter-sm overflow-hidden q-mb-sm">
+            <q-form class="q-gutter-sm q-mb-sm">
               <q-input bottom-slots filled v-model="language">
                 <template v-slot:hint>Language (E.g. English)</template>
                 <template v-slot:append>
-                  <q-btn round dense flat icon="add" @click="language && addLanguage(language)" />
+                  <q-btn
+                    round
+                    dense
+                    icon="add"
+                    @click="language && addLanguage(language)"
+                    class="bg-white"
+                    style="top: 28px; right: -28px; z-index: 9"
+                  />
                 </template>
               </q-input>
             </q-form>
