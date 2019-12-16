@@ -25,7 +25,7 @@
         </div>
       </q-toolbar>
     </q-header>
-
+<div class="fixed-sidebar">
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
@@ -49,7 +49,7 @@
         </q-list>
       </q-scroll-area>
     </q-drawer>
-
+</div>
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -84,3 +84,13 @@ export default {
   }
 }
 </script>
+
+<style lang="sass">
+.fixed-sidebar
+  position: fixed
+  top: 1px
+  left: 0
+  height: 100vh
+  width: 100%
+  z-index: 9
+</style>
