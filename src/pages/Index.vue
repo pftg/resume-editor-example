@@ -88,14 +88,22 @@
             </q-form>
           </div>
 
-          <div id="experience" class="q-mb-xl">
+          <div id="experience" class="q-mb-xl relative-position q-pb-lg">
             <div class="text-h6">Experience</div>
             <span class="text-body2">Add at least 3 jobs with 3 highlights each</span>
             <q-separator class="q-mt-md q-mb-md" />
 
-            <q-form class="q-gutter-sm q-mb-md" v-for="index in experiences.length" :key="index">
+            <q-form class="q-gutter-sm q-mb-xl relative-position q-pt-md" v-for="index in experiences.length" :key="index">
+
               <span class="text-overline">Experience {{ index }}</span>
-              <span><q-icon class="cursor-pointer text-h6" color="grey" :name="'remove_circle_outline'" @click="removeExperience(index)" /></span>
+              <q-btn
+                round
+                dense
+                class="absolute-top-right bg-white"
+                icon="delete_outline"
+                @click="removeExperience(index)"
+              />
+
               <q-input
                 filled
                 v-model="experiences[index - 1].company"
@@ -142,8 +150,8 @@
                     round
                     dense
                     icon="add"
-                    class="bg-white"
-                    style="top: 47px; right: -28px; z-index: 9"
+                    class="bg-white absolute-bottom-right"
+                    style="margin-bottom: -17px; margin-right: -17px; z-index: 9"
                     @click="experiences[index - 1].highlight && addHighlights(experiences[index - 1].highlight, index)"
                   />
                 </template>
@@ -152,25 +160,45 @@
               <div
                 v-for="highlight in experiences[index - 1].highlights"
                 :key="highlight"
-                class="text-body2 q-mr-xs"
-                @click="removeHighlights(highlight, index)"
+                class="text-body2 q-mb-lg bg-grey-3 q-pa-md relative-position"
               >
                 {{ highlight }}
-                <q-icon class="cursor-pointer" color="grey" :name="'close'" />
+                <q-btn
+                  round
+                  dense
+                  icon="remove"
+                  class="bg-white block absolute-bottom-right"
+                  style="margin-bottom: -17px; margin-right: -17px; z-index: 9"
+                  @click="removeHighlights(highlight, index)"
+                />
               </div>
 
             </q-form>
-            <q-btn color="white" text-color="black" label="Add Experience" @click="addExperience" />
+            <q-btn
+              round
+              dense
+              class="absolute-bottom-right bg-white"
+              icon="post_add"
+              @click="addExperience"
+            />
           </div>
 
-          <div id="education" class="q-mb-xl">
+          <div id="education" class="q-mb-xl q-pb-lg relative-position">
             <div class="text-h6">Education</div>
             <span class="text-body2">List all your relevant education</span>
             <q-separator class="q-mt-md q-mb-md" />
 
-            <q-form class="q-gutter-sm overflow-hidden q-mb-md" v-for="index in educations.length" :key="index">
+            <q-form class="q-gutter-sm q-mb-md q-pt-md relative-position" v-for="index in educations.length" :key="index">
+
               <span class="text-overline">Education {{ index }}</span>
-              <span><q-icon class="cursor-pointer text-h6" color="grey" :name="'remove_circle_outline'" @click="removeEducation(index)" /></span>
+              <q-btn
+                round
+                dense
+                class="absolute-top-right bg-white"
+                icon="delete_outline"
+                @click="removeEducation(index)"
+              />
+
               <q-input
                 filled
                 v-model="educations[index - 1].school"
@@ -205,7 +233,13 @@
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
               />
             </q-form>
-            <q-btn color="white" text-color="black" label="Add Education" @click="addEducation" />
+            <q-btn
+              round
+              dense
+              class="absolute-bottom-right bg-white"
+              icon="post_add"
+              @click="addEducation"
+            />
           </div>
 
           <div id="skills" class="q-mb-xl">
@@ -213,7 +247,7 @@
             <span class="text-body2">List both your hard and soft skills, putting the most relevant skills at the top of the list</span>
             <q-separator class="q-mt-md q-mb-md" />
 
-            <q-form class="q-gutter-sm q-mb-sm">
+            <q-form class="q-gutter-sm q-mb-sm relative-position">
               <q-input bottom-slots filled v-model="skill">
                 <template v-slot:hint>Skill (E.g. Design, Management, etc.)</template>
                 <template v-slot:append>
@@ -222,22 +256,28 @@
                     dense
                     icon="add"
                     @click="skill && addSkill(skill)"
-                    class="bg-white"
-                    style="top: 28px; right: -28px; z-index: 9"
+                    class="bg-white block absolute-bottom-right"
+                    style="margin-bottom: -17px; margin-right: -17px; z-index: 9"
                   />
                 </template>
               </q-input>
             </q-form>
 
-            <span
+            <div
               v-for="skill in skills"
               :key="skill"
-              class="text-body2 q-mr-xs"
-              @click="removeSkill(skill)"
+              class="text-body2 q-mb-lg bg-grey-3 q-pa-md relative-position"
             >
               {{ skill }}
-              <q-icon class="cursor-pointer" color="grey" :name="'close'" />
-            </span>
+              <q-btn
+                round
+                dense
+                icon="remove"
+                class="bg-white block absolute-bottom-right"
+                style="margin-bottom: -17px; margin-right: -17px; z-index: 9"
+                @click="removeSkill(skill)"
+              />
+            </div>
 
           </div>
 
@@ -246,7 +286,7 @@
             <span class="text-body2">List all the languages you know</span>
             <q-separator class="q-mt-md q-mb-md" />
 
-            <q-form class="q-gutter-sm q-mb-sm">
+            <q-form class="q-gutter-sm q-mb-sm relative-position">
               <q-input bottom-slots filled v-model="language">
                 <template v-slot:hint>Language (E.g. English)</template>
                 <template v-slot:append>
@@ -255,22 +295,28 @@
                     dense
                     icon="add"
                     @click="language && addLanguage(language)"
-                    class="bg-white"
-                    style="top: 28px; right: -28px; z-index: 9"
+                    class="bg-white block absolute-bottom-right"
+                    style="margin-bottom: -17px; margin-right: -17px; z-index: 9"
                   />
                 </template>
               </q-input>
             </q-form>
 
-            <span
+            <div
               v-for="language in languages"
               :key="language"
-              class="text-body2 q-mr-xs"
-              @click="removeLanguage(language)"
+              class="text-body2 q-mb-lg bg-grey-3 q-pa-md relative-position"
             >
               {{ language }}
-              <q-icon class="cursor-pointer" color="grey" :name="'close'" />
-            </span>
+              <q-btn
+                round
+                dense
+                icon="remove"
+                class="bg-white block absolute-bottom-right"
+                style="margin-bottom: -17px; margin-right: -17px; z-index: 9"
+                @click="removeLanguage(language)"
+              />
+            </div>
 
           </div>
 
@@ -486,7 +532,7 @@ export default {
         }
       ],
       skill: '',
-      skills: ['CSS', 'HTML', 'JavaScript', 'React', 'React Native'],
+      skills: ['React', 'React Native'],
       language: '',
       languages: ['Spanish'],
       summary: 'A resume summary statement is a short paragraph at the beginning of a resume that highlights a job seeker’s professional skills and experience. It gives hiring managers a glimpse into the job seeker’s expertise before diving into their resume. The goal of a summary statement is to demonstrate the job seeker’s unique value through their skills and accomplishments.'
