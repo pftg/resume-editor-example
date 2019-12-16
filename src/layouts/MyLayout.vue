@@ -91,6 +91,6 @@ export default {
   top: 1px
   left: 0
   height: 100vh
-  width: 100%
+  width: auto
   z-index: 9
 </style>
