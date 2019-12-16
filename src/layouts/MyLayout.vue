@@ -25,31 +25,33 @@
         </div>
       </q-toolbar>
     </q-header>
-<div class="fixed-sidebar">
-    <q-drawer
-      v-model="leftDrawerOpen"
-      show-if-above
-      bordered
-      content-class="bg-grey-2"
-      :width="240"
-    >
-      <q-scroll-area class="fit">
-        <q-list padding>
-          <q-item v-for="link in links" :key="link.text" v-ripple clickable @click="goto(link.value)">
-            <q-item-section avatar>
-              <q-icon color="grey" :name="link.icon" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>{{ link.text }}</q-item-label>
-            </q-item-section>
-          </q-item>
 
-          <q-separator class="q-mt-md q-mb-xs" />
+    <div class="fixed-left">
+      <q-drawer
+        v-model="leftDrawerOpen"
+        show-if-above
+        bordered
+        content-class="bg-grey-2"
+        :width="240"
+      >
+        <q-scroll-area class="fit">
+          <q-list padding>
+            <q-item v-for="link in links" :key="link.text" v-ripple clickable @click="goto(link.value)">
+              <q-item-section avatar>
+                <q-icon color="grey" :name="link.icon" />
+              </q-item-section>
+              <q-item-section>
+                <q-item-label>{{ link.text }}</q-item-label>
+              </q-item-section>
+            </q-item>
 
-        </q-list>
-      </q-scroll-area>
-    </q-drawer>
-</div>
+            <q-separator class="q-mt-md q-mb-xs" />
+
+          </q-list>
+        </q-scroll-area>
+      </q-drawer>
+    </div>
+
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -84,13 +86,3 @@ export default {
   }
 }
 </script>
-
-<style lang="sass">
-.fixed-sidebar
-  position: fixed
-  top: 1px
-  left: 0
-  height: 100vh
-  width: auto
-  z-index: 9
-</style>

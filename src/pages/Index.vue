@@ -4,7 +4,7 @@
 
       <div class="q-pa-md rounded-borders overflow-y-auto">
 
-          <div id="photo" class="q-mb-lg">
+          <div id="photo" class="q-mb-xl">
             <div class="text-h6">Photo</div>
             <span class="text-body2">Upload your photo</span>
             <q-separator class="q-mt-md q-mb-md" />
@@ -12,7 +12,7 @@
             <q-uploader />
           </div>
 
-          <div id="name" class="q-mb-lg">
+          <div id="name" class="q-mb-xl">
             <div class="text-h6">Name</div>
             <span class="text-body2">Use your first and last name. No nicknames</span>
             <q-separator class="q-mt-md q-mb-md" />
@@ -41,7 +41,7 @@
             </q-form>
           </div>
 
-          <div id="subtitle" class="q-mb-lg">
+          <div id="subtitle" class="q-mb-xl">
             <div class="text-h6">Subtitle</div>
             <span class="text-body2">Two words what you want to do</span>
             <q-separator class="q-mt-md q-mb-md" />
@@ -57,7 +57,7 @@
             </q-form>
           </div>
 
-          <div id="contacts" class="q-mb-lg">
+          <div id="contacts" class="q-mb-xl">
             <div class="text-h6">Contacts</div>
             <span class="text-body2">Add your phone number and email</span>
             <q-separator class="q-mt-md q-mb-md" />
@@ -88,7 +88,7 @@
             </q-form>
           </div>
 
-          <div id="experience" class="q-mb-lg">
+          <div id="experience" class="q-mb-xl">
             <div class="text-h6">Experience</div>
             <span class="text-body2">Add at least 3 jobs with 3 highlights each</span>
             <q-separator class="q-mt-md q-mb-md" />
@@ -155,7 +155,7 @@
             <q-btn color="white" text-color="black" label="Add Experience" @click="addExperience" />
           </div>
 
-          <div id="education" class="q-mb-lg">
+          <div id="education" class="q-mb-xl">
             <div class="text-h6">Education</div>
             <span class="text-body2">List all your relevant education</span>
             <q-separator class="q-mt-md q-mb-md" />
@@ -200,7 +200,7 @@
             <q-btn color="white" text-color="black" label="Add Education" @click="addEducation" />
           </div>
 
-          <div id="skills" class="q-mb-lg">
+          <div id="skills" class="q-mb-xl">
             <div class="text-h6">Skills</div>
             <span class="text-body2">List both your hard and soft skills, putting the most relevant skills at the top of the list</span>
             <q-separator class="q-mt-md q-mb-md" />
@@ -226,7 +226,7 @@
 
           </div>
 
-          <div id="languages" class="q-mb-lg">
+          <div id="languages" class="q-mb-xl">
             <div class="text-h6">Languages</div>
             <span class="text-body2">List all the languages you know</span>
             <q-separator class="q-mt-md q-mb-md" />
@@ -252,7 +252,7 @@
 
           </div>
 
-          <div id="summary" class="q-mb-lg">
+          <div id="summary" class="q-mb-xl">
             <div class="text-h6">Summary</div>
             <span class="text-body2">Write highlights about you</span>
             <q-separator class="q-mt-md q-mb-md" />
@@ -299,7 +299,7 @@
             </div>
           </div>
 
-          <div v-if="experiences.length" class="q-mb-lg">
+          <div v-if="experiences.length" class="q-mb-xl">
             <h6 class="text-h6 q-mt-none q-mb-xs">Experience:</h6>
             <q-separator class="q-mb-md q-pb-xs bg-secondary" />
 
@@ -319,7 +319,7 @@
             </div>
           </div>
 
-          <div v-if="educations.length" class="q-mb-lg">
+          <div v-if="educations.length" class="q-mb-xl">
             <h6 class="text-h6 q-mt-none q-mb-xs">Education:</h6>
             <q-separator class="q-mb-md q-pb-xs bg-secondary" />
 
@@ -472,12 +472,3 @@ export default {
   }
 }
 </script>
-
-<style lang="sass">
-.scroll-area
-  height: calc(100vh - 58px)
-  @media (max-width: $breakpoint-sm-max)
-    height: auto
-.overflow-y-auto
-  overflow-y: auto
-</style>
