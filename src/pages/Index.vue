@@ -9,13 +9,7 @@
             <span class="text-body2">Upload your photo</span>
             <q-separator class="q-mt-md q-mb-md" />
 
-            <q-input
-              @input="val => { file = val[0] }"
-              filled
-              type="file"
-              hint="Your photo"
-              @change="onFileSelected"
-            />
+            <q-uploader />
           </div>
 
           <div id="name" class="q-mb-lg">
