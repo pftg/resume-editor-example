@@ -3796,10 +3796,10 @@ cypress@^3.3.1:
     url "0.11.0"
     yauzl "2.10.0"
 
-dart-sass@^1.23.7:
-  version "1.23.7"
-  resolved "https://registry.yarnpkg.com/dart-sass/-/dart-sass-1.23.7.tgz#3dd2d0bab110745349cc629dae4fa2ba86b46772"
-  integrity sha512-egjDzxr4xw3qz5PW3EWVkQhbcmVtzD8IFwOHkDe2hhh8zMcUKzKx1OE0JLrnr14jFId7TuOp0t+ASda1e+PvyQ==
+dart-sass@^1.24.1:
+  version "1.24.1"
+  resolved "https://registry.yarnpkg.com/dart-sass/-/dart-sass-1.24.1.tgz#9252a7c0ac5b2a723c5dca80aa6ffcdacbcef90d"
+  integrity sha512-P+Fol2GjpPyqHu8akDIoFN0sXEXJjuxw8Vd7niIADE0D099nD/ivggb81jyPA5q1X408ixz5/JZegzlkfAmihQ==
   dependencies:
     chokidar ">=2.0.0 <4.0.0"
 
