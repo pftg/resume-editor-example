@@ -48,7 +48,7 @@
     "sass": "^1.23.7",
     "sass-loader": "^8.0.0",
     "tailwindcss": "^1.1.4",
-    "vue-cli-plugin-electron-builder": "^1.4.3",
+    "vue-cli-plugin-electron-builder": "^1.4.6",
     "vue-template-compiler": "^2.6.11"
   }
 }
